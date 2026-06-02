@@ -52,7 +52,27 @@
   </div>
 
 </div>
+<div class="project">
+  <h2>AlphaFold Confidence Analysis of Human Hemoglobin Subunit Beta</h2>
+  <div class="meta">UniProt: P68871 · UCSF ChimeraX · AlphaFold v2 · 2025</div>
 
+  <p>Using UCSF ChimeraX, I performed a pLDDT confidence analysis of human hemoglobin subunit beta (UniProt: P68871) sourced from the AlphaFold Protein Structure Database. Coloring the structure by pLDDT score revealed very high confidence (>90) across the conserved eight-helix globin bundle, with a localized low-confidence region at the N-terminal tail spanning residues Met1–Thr5 (pLDDT &lt;70). This reduced confidence reflects the intrinsic flexibility of the unstructured terminus and its dependence on oligomeric context unavailable to a monomer-based prediction model.</p>
+
+  <video controls>
+    <source src="hemoglobin_beta_360_rotation.mp4" type="video/mp4">
+  </video>
+
+  <div class="images">
+    <img src="full_structure_plddt.png" alt="Hemoglobin beta full structure pLDDT coloring">
+    <img src="nterminus_low_confidence.png" alt="N-terminal low confidence region pLDDT">
+  </div>
+
+  <div class="finding">
+    <p>Key Finding: pLDDT scores exceeded 90 across the globin bundle confirming high structural confidence, while residues Met1–Thr5 fell below 70 — correctly identifying a disordered terminus whose conformation depends on tetramer assembly context absent from the monomer prediction.</p>
+  </div>
+
+</div>
+ 
 <footer>
   Leon Trajkovski · leontrajkovski9@gmail.com · Built with UCSF ChimeraX
 </footer>
