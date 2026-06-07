@@ -78,16 +78,16 @@
 
     <div class="project" id="project-membrane">
       <div class="mobile-date">June 10, 2026</div>
-      <h2>Procedural Animation of the SARS-CoV-2 Spike Protein in a Lipid Bilayer</h2>
+      <h2>Procedural Geometry Nodes Animation of the Active Active Human Secretin Receptor Gs Complex</h2>
       <div class="meta">PDB: 6WZG · OPM Database · Blender Geometry Nodes · Cycles · <span class="date-text">June 10, 2026</span></div>
 
-      <p>To simulate a realistic fluid environment for transmembrane structures, I built a procedural lipid bilayer using Blender Geometry Nodes, cross-referencing spatial boundaries from the Orientations of Proteins in Membranes (OPM) database for the SARS-CoV-2 spike glycoprotein (PDB: 6WZG). The geometry nodes populate instances of individual lipid molecules across an organic, wavy canvas. To simulate thermodynamic movement without slow physics bakes, I utilized a node setup that spins the hydrophobic lipid tails rapidly on their local Z-axes to represent high-frequency lipid dynamics, while adding subtle, micro-oscillations to the anchoring spike protein itself. The final layout was rendered in Cycles to capture deep subsurface light scattering through the membrane sheet.</p>
+      <p>To capture the dynamic cellular environment of transmembrane signaling, I built a procedural lipid bilayer using Blender Geometry Nodes to embed the active state of the human secretin receptor bound to its Gs protein complex (PDB: 6WZG). Using spatial coordinates from the Orientations of Proteins in Membranes (OPM) database as a strict orientation reference, I aligned the receptor's 7-transmembrane (7TM) core within the bilayer. The geometry node setup instances individual lipid molecules across a procedurally displaced canvas. To simulate lipid core thermodynamics efficiently, the node tree rapidly spins the hydrophobic tails along their local Z-axes to represent high-speed kinetic fluctuations, while applying micro-translations to the receptor complex to ground it in a fluid state. The final frames were path-traced in Cycles to capture accurate subsurface light transport through the cellular lipid boundary layer.</p>
 
       <video autoplay loop muted playsinline controls>
         <source src="Membrane_Video.mp4" type="video/mp4">
       </video>
 
-      <img class="full-width zoomable-img" src="Membrane_Far.png" alt="Wide view of SARS-CoV-2 spike protein complex anchored into a lipid bilayer" onclick="openLightbox(this.src)">
+      <img class="full-width zoomable-img" src="Membrane_Far.png" alt="Wide view of the active human secretin receptor GPCR complex embedded within a fluid lipid bilayer mesh" onclick="openLightbox(this.src)">
 
       <div class="finding">
         <p>Key Technical Note: Driving membrane fluid dynamics procedurally via Geometry Nodes allows for continuous, light-weight animations of lipid environments. Using rapid, random local rotations on the tail vertices accurately isolates high-frequency kinetic energy inside the hydrophobic core without disrupting the overall macro stability of the membrane bilayer.</p>
