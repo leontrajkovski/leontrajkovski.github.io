@@ -17,7 +17,7 @@
   .nav-line { position: fixed; right: calc(50% - 530px); top: 0; width: 1px; height: 100vh; background: #1a2424; z-index: -1; }
   
   .vol-menu { position: fixed; right: calc(50% - 555px); top: 120px; display: flex; flex-direction: column; gap: 40px; }
-  .vol-item { display: flex; align-items: center; gap: 15px; text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; color: #445454; transition: 0.3s ease; }
+  .vol-item { display: flex; align-items: center; gap: 15px; text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; color: #445454; transition: 0.3s ease; }
   .vol-item::before { content: ''; width: 7px; height: 7px; background: #1a2424; border-radius: 50%; transition: 0.3s ease; transform: translateX(-4px); }
   .vol-item:hover, .vol-item.active { color: #7ecfcf; }
   .vol-item:hover::before, .vol-item.active::before { background: #7ecfcf; box-shadow: 0 0 8px #7ecfcf; }
@@ -67,9 +67,9 @@
     </header>
 
     <!-- ==========================================
-         SECTION 03: MACROMOLECULAR ASSEMBLIES
+         PROJECT BLOCK 1
          ========================================== -->
-    <section class="project-card" id="sec03">
+    <section class="project-card" id="project1">
       <h2>Conformational Morphing & Procedural Modeling of F1Fo-ATP Synthase</h2>
       <p class="tech-meta">PDB: 5ARE, 5ARI, 5FIL · MOLECULAR NODES · BLENDER GEOMETRY NODES · CYCLES</p>
       
@@ -98,9 +98,9 @@
     </section>
 
     <!-- ==========================================
-         SECTION 02: RECEPTOR & MEMBRANE DYNAMICS
+         PROJECT BLOCK 2
          ========================================== -->
-    <section class="project-card" id="sec02">
+    <section class="project-card" id="project2">
       <h2>Subsurface Scattering & Molecular Dynamics of the Human TrkA Receptor</h2>
       <p class="tech-meta">ZENODO TRAJECTORY · MOLECULAR NODES · BLENDER GEOMETRY NODES · CYCLES</p>
       
@@ -143,9 +143,9 @@
     </section>
 
     <!-- ==========================================
-         SECTION 01: CORE STRUCTURAL FEATURES
+         PROJECT BLOCK 3
          ========================================== -->
-    <section class="project-card" id="sec01">
+    <section class="project-card" id="project3">
       <h2>Cinematic Glass Render of Lactoferrin</h2>
       <p class="tech-meta">PDB: 1LFG · UCSF CHIMERAX · BLENDER (CYCLES)</p>
       
@@ -224,9 +224,9 @@
   <!-- FIXED RIGHT TRACKING GRAPHIC -->
   <div class="nav-line"></div>
   <nav class="vol-menu">
-    <a href="#sec03" class="vol-item active">03</a>
-    <a href="#sec02" class="vol-item">02</a>
-    <a href="#sec01" class="vol-item">01</a>
+    <a href="#project1" class="vol-item active">03</a>
+    <a href="#project2" class="vol-item">02</a>
+    <a href="#project3" class="vol-item">01</a>
   </nav>
 
 </div>
