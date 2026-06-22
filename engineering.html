@@ -3,18 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leon Trajkovski | Biomedical Engineering</title>
+<title>Leon Trajkovski | Biomedical Engineering Portfolio</title>
 <style>
-  body { background: #0d0d0d; color: #dfa670; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
-  h1 { font-weight: 300; letter-spacing: 4px; margin-bottom: 10px; }
-  p { font-family: 'Georgia', serif; color: #888; font-size: 1rem; margin-bottom: 30px; }
-  a { color: #e8e8e8; text-decoration: none; border: 1px solid #333; padding: 10px 20px; border-radius: 4px; transition: 0.3s; font-size: 0.85rem; letter-spacing: 1px; }
-  a:hover { border-color: #dfa670; color: #dfa670; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0d0d0d; color: #e8e8e8; font-family: 'Georgia', serif; }
+  
+  /* HEADER STYLES */
+  header { 
+    padding: 80px 40px 50px; 
+    border-bottom: 1px solid #1a1a1a; 
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .header-text { flex: 1; }
+  header h1 { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 2.2rem; 
+    font-weight: 300; 
+    letter-spacing: 5px; 
+    color: #ffffff; 
+  }
+  header p { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 12px; 
+    color: #666; 
+    font-size: 0.85rem; 
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+  }
+
+  /* BACK BUTTON NAVIGATION */
+  .back-btn {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.8rem;
+    color: #555;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid #222;
+    padding: 10px 18px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  .back-btn:hover {
+    color: #bfa38a;
+    border-color: #bfa38a;
+    background: rgba(191, 163, 138, 0.03);
+  }
+  
+  /* Main layout split */
+  .portfolio-container { position: relative; max-width: 1200px; margin: 0 auto; display: flex; }
+  .feed { flex: 1; max-width: 960px; padding: 0 40px; margin: 0 auto; }
+  
+  .project { margin: 60px auto; scroll-margin-top: 80px; }
+  .project h2 { font-size: 1.4rem; font-weight: normal; color: #bfa38a; margin-bottom: 8px; }
+  .project .meta { font-size: 0.8rem; color: #555; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
+  
+  .project p { line-height: 1.8; color: #bbb; margin-bottom: 24px; font-size: 0.95rem; }
+  
+  /* Uniform visual grid to completely eliminate layout gaps */
+  .filled-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+    margin-bottom: 24px; 
+  }
+  .filled-grid img { 
+    width: 100%; 
+    height: 450px; 
+    object-fit: cover; 
+    border-radius: 4px; 
+    border: 1px solid #1a1a1a; 
+    cursor: pointer; 
+    transition: border-color 0.3s, transform 0.2s; 
+  }
+  .filled-grid img:hover { border-color: #bfa38a; }
+
+  .images { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .images img, .zoomable-img { width: 100%; border-radius: 4px; border: 1px solid #1a1a1a; cursor: pointer; transition: border-color 0.3s, transform 0.2s; }
+  .images img:hover, .zoomable-img:hover { border-color: #bfa38a; }
+  
+  .full-width { width: 100%; border-radius: 4px; border: 1px solid #1a1a1a; margin-bottom: 24px; display: block; }
+  video { width: 100%; border-radius: 4px; margin-bottom: 24px; border: 1px solid #1a1a1a; display: block; }
+  
+  .finding { background: #111; border-left: 3px solid #bfa38a; padding: 16px 20px; border-radius: 0 4px 4px 0; margin-bottom: 24px; }
+  .finding p { color: #ccc; margin: 0; font-size: 0.9rem; font-style: italic; }
+  footer { border-top: 1px solid #222; padding: 40px; text-align: center; color: #444; font-size: 0.8rem; }
+
+  /* Lightbox Styles */
+  .lightbox-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(5, 5, 5, 0.95); display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1000;
+  }
+  .lightbox-overlay.active { opacity: 1; pointer-events: auto; }
+  .lightbox-container { position: relative; max-width: 90%; max-height: 90%; overflow: hidden; border-radius: 4px; }
+  .lightbox-img { max-width: 100%; max-height: 85vh; object-fit: contain; transition: transform 0.2s ease; cursor: zoom-in; display: block; }
+  .lightbox-img.zoomed { transform: scale(2); cursor: zoom-out; }
+  .lightbox-close { position: absolute; top: 20px; right: 20px; color: #888; font-size: 1.5rem; cursor: pointer; font-family: sans-serif; transition: color 0.2s; }
+  .lightbox-close:hover { color: #fff; }
+
+  /* Responsive Design Rules */
+  @media (max-width: 1024px) {
+    .feed { max-width: 100%; }
+  }
+  @media (max-width: 768px) {
+    .header-content { flex-direction: column; gap: 20px; }
+    .back-btn { align-self: flex-start; }
+    .filled-grid { grid-template-columns: 1fr; }
+    .filled-grid img { height: 350px; }
+  }
 </style>
 </head>
 <body>
-  <h1>BIOMEDICAL ENGINEERING</h1>
-  <p>Parametric CAD models and simulation logs coming soon.</p>
-  <a href="index.html">RETURN TO HUB</a>
+
+<header>
+  <div class="header-content">
+    <div class="header-text">
+      <h1>LEON TRAJKOVSKI</h1>
+      <p>Biomedical Engineering · Parametric CAD · Finite Element Analysis</p>
+    </div>
+    <a href="index.html" class="back-btn">← Back to Hub</a>
+  </div>
+</header>
+
+<div class="portfolio-container">
+  
+  <div class="feed">
+
+    <div class="project" id="project-prosthetic">
+      <h2>Parametric Optimization of an Anthropomorphic Myoelectric Upper-Limb Mechanism</h2>
+      <div class="meta">SolidWorks · Fusion 360 · FEA Stress Analysis · Ansys</div>
+
+      <video autoplay loop muted playsinline controls>
+        <source src="prosthetic_assembly.mp4" type="video/mp4">
+      </video>
+
+      <p>This project documents the physical assembly, component architecture, and mechanical engineering layouts for an adjustable upper-limb mechanism. Built entirely within parametric CAD suites, the design features custom linkage geometry to maximize force-transmission efficiency during finger contraction. The physical joints incorporate nested structural channels to safely protect sub-miniature actuator lines while minimizing overall physical bulk. Structural mass reduction was handled through algorithmic load path analysis, focusing material placement strictly along regions experiencing active mechanical stress.</p>
+
+      <div class="filled-grid">
+        <img src="fea_stress_mesh.png" alt="Finite element stress distribution mapping under maximum load conditions" onclick="openLightbox(this.src)">
+        <img src="cad_blueprint.png" alt="Detailed isometric blueprint detailing geometric tolerances and parameters" onclick="openLightbox(this.src)">
+      </div>
+
+      <div class="finding">
+        <p>Engineering Note: Resolving point-load concentrations at joint connections required replacing standard inline pin configurations with double-shear bracket profiles. This geometric optimization redistributed structural stress smoothly across the mounting face, preventing premature fatigue failure under heavy cyclic loads.</p>
+      </div>
+
+      <img class="full-width zoomable-img" src="linkage_workspace.png" alt="Parametric skeletal sketch showing linkage degree-of-freedom calculations" onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="project" id="project-microfluidic">
+      <h2>Computational Fluid Dynamics & Transient Flow Optimization of a Microfluidic Sorting Matrix</h2>
+      <div class="meta">Fusion 360 · SimScale · CFD Fluid Dynamics · OpenFOAM</div>
+
+      <p>To optimize internal flow mechanics within tight diagnostic microchannels, I designed and evaluated a fluidic separation manifold using computational fluid dynamics simulations. The geometric profile channels laminar flow paths to smoothly guide suspended microparticles through sudden turns without triggering boundary layer separation or localized eddies. The structural boundaries and inner transition radii were tuned iteratively to minimize internal stagnation points, keeping pressure values balanced and stable across the active mixing zones.</p>
+
+      <video autoplay loop muted playsinline controls>
+        <source src="cfd_flow_trajectory.mp4" type="video/mp4">
+      </video>
+
+      <div class="finding">
+        <p>Engineering Note: High wall shear stresses inside microfluidic networks can easily damage fragile cargo. Transitioning from sharp interior walls to gentle, mathematically filleted boundaries dropped local shear levels below critical thresholds while keeping throughput rates completely steady.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+ 
+<footer>
+  Leon Trajkovski · leontrajkovski9@gmail.com · Built with SolidWorks & Fusion 360
+</footer>
+
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+  <span class="lightbox-close">&times;</span>
+  <div class="lightbox-container">
+    <img class="lightbox-img" id="lightbox-target" src="" alt="Enlarged view" onclick="toggleZoom(event)">
+  </div>
+</div>
+
+<script>
+  // Lightbox Logic
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-target');
+
+  function openLightbox(src) {
+    lightboxImg.src = src;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+      lightbox.classList.remove('active');
+      lightboxImg.classList.remove('zoomed');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function toggleZoom(e) {
+    e.stopPropagation();
+    lightboxImg.classList.toggle('zoomed');
+    if (lightboxImg.classList.contains('zoomed')) {
+      lightbox.onmousemove = (moveEvent) => {
+        const x = (moveEvent.clientX / window.innerWidth) * 100;
+        const y = (moveEvent.clientY / window.innerHeight) * 100;
+        lightboxImg.style.transformOrigin = `${x}% ${y}%`;
+      };
+    } else {
+      lightbox.onmousemove = null;
+    }
+  }
+</script>
+
 </body>
 </html>
