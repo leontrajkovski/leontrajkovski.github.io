@@ -3,258 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leon Trajkovski | Structural Biology</title>
+<title>Leon Trajkovski | Structural Biology Portfolio</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0b0d0d; color: #e8e8e8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; }
+  body { background: #0d0d0d; color: #e8e8e8; font-family: 'Georgia', serif; }
   
-  /* MAIN PORTFOLIO LAYOUT */
-  .portfolio-container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; display: flex; gap: 50px; position: relative; }
-  .feed { flex: 1; }
-  
-  /* FIXED SIDEBAR NAV */
-  .sidebar { width: 140px; position: flex; top: 60px; height: calc(100vh - 120px); display: flex; flex-direction: column; align-items: flex-start; }
-  .nav-line { position: fixed; right: calc(50% - 530px); top: 0; width: 1px; height: 100vh; background: #1a2424; z-index: -1; }
-  
-  .vol-menu { position: fixed; right: calc(50% - 555px); top: 120px; display: flex; flex-direction: column; gap: 40px; }
-  .vol-item { display: flex; align-items: center; gap: 15px; text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; color: #445454; transition: 0.3s ease; }
-  .vol-item::before { content: ''; width: 7px; height: 7px; background: #1a2424; border-radius: 50%; transition: 0.3s ease; transform: translateX(-4px); }
-  .vol-item:hover, .vol-item.active { color: #7ecfcf; }
-  .vol-item:hover::before, .vol-item.active::before { background: #7ecfcf; box-shadow: 0 0 8px #7ecfcf; }
-
-  /* HOME BUTTON */
-  .back-home { margin-bottom: 40px; font-size: 0.8rem; letter-spacing: 2px; color: #556666; text-decoration: none; transition: 0.3s; }
-  .back-home:hover { color: #7ecfcf; }
-
-  /* HEADER */
-  header { margin-bottom: 70px; border-bottom: 1px solid #1a2424; padding-bottom: 30px; }
-  header h1 { font-size: 2.2rem; font-weight: 300; letter-spacing: 5px; color: #ffffff; margin-bottom: 8px; }
-  header p { font-size: 0.85rem; letter-spacing: 3px; color: #556666; text-transform: uppercase; }
-
-  /* PROJECT BLOCKS */
-  .project-card { margin-bottom: 110px; scroll-margin-top: 60px; }
-  .project-card h2 { font-size: 1.6rem; font-weight: 400; letter-spacing: 1px; color: #7ecfcf; margin-bottom: 8px; }
-  .tech-meta { font-size: 0.75rem; letter-spacing: 1.5px; color: #556666; text-transform: uppercase; margin-bottom: 25px; }
-  .project-desc { font-family: 'Georgia', serif; font-size: 0.98rem; color: #a3b3b3; max-width: 800px; line-height: 1.75; margin-bottom: 30px; }
-  
-  /* MEDIA GRID STYLING */
-  .media-wrapper { margin-bottom: 20px; border-radius: 4px; overflow: hidden; background: #080a0a; border: 1px solid #141a1a; }
-  .media-wrapper video, .media-wrapper img { width: 100%; display: block; height: auto; }
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-
-  /* LAB NOTE BOXES */
-  .lab-note { background: #080a0a; border-left: 2px solid #233434; padding: 20px; margin-top: 25px; border-radius: 0 4px 4px 0; max-width: 800px; }
-  .lab-note p { font-family: 'Georgia', serif; font-style: italic; font-size: 0.88rem; color: #6f8585; line-height: 1.6; }
-
-  /* RESPONSIVE DESIGN */
-  @media (max-width: 1150px) {
-    .nav-line, .vol-menu { display: none; }
-    .portfolio-container { padding: 40px 20px; }
+  /* HEADER STYLES */
+  header { 
+    padding: 80px 40px 50px; 
+    border-bottom: 1px solid #1a1a1a; 
+    max-width: 1200px;
+    margin: 0 auto;
   }
-</style>
-</head>
-<body>
-
-<div class="portfolio-container">
+  header h1 { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 2.2rem; 
+    font-weight: 300; 
+    letter-spacing: 5px; 
+    color: #ffffff; 
+  }
+  header p { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 12px; 
+    color: #666; 
+    font-size: 0.85rem; 
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+  }
   
-  <!-- LEFT SIDE FEED CONTENT -->
-  <main class="feed">
-    
-    <header>
-      <a href="index.html" class="back-home">← BACK TO HUB</a>
-      <h1>LEON TRAJKOVSKI</h1>
-      <p>Structural Biology · Molecular Visualization · Bioinformatics</p>
-    </header>
+  /* Main layout split */
+  .portfolio-container { max-width: 1200px; margin: 0 auto; display: block; }
+  .feed { max-width: 960px; padding: 0 40px; margin: 0 auto; }
+  
+  .project { margin: 60px auto; scroll-margin-top: 80px; }
+  .project h2 { font-size: 1.4rem; font-weight: normal; color: #7ecfcf; margin-bottom: 8px; }
+  .project .meta { font-size: 0.8rem; color: #555; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
+  
+  .project p { line-height: 1.8; color: #bbb; margin-bottom: 24px; font-size: 0.95rem; }
+  
+  /* Uniform visual grid to completely eliminate layout gaps */
+  .filled-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+    margin-bottom: 24px; 
+  }
+  .filled-grid img { 
+    width: 100%; 
+    height: 450px; 
+    object-fit: cover; 
+    border-radius: 4px; 
+    border: 1px solid #1a1a1a; 
+    cursor: pointer; 
+    transition: border-color 0.3s, transform 0.2s; 
+  }
+  .filled-grid img:hover { border-color: #7ecfcf; }
 
-    <!-- ==========================================
-         PROJECT BLOCK 1
-         ========================================== -->
-    <section class="project-card" id="project1">
-      <h2>Conformational Morphing & Procedural Modeling of F1Fo-ATP Synthase</h2>
-      <p class="tech-meta">PDB: 5ARE, 5ARI, 5FIL · MOLECULAR NODES · BLENDER GEOMETRY NODES · CYCLES</p>
-      
-      <div class="media-wrapper">
-        <video controls loop muted autoplay playsinline>
-          <source src="atp_synthase_rotation.mp4" type="video/mp4">
-        </video>
-      </div>
+  .images { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .images img, .zoomable-img { width: 100%; border-radius: 4px; border: 1px solid #1a1a1a; cursor: pointer; transition: border-color 0.3s, transform 0.2s; }
+  .images img:hover, .zoomable-img:hover { border-color: #7ecfcf; }
+  
+  .full-width { width: 100%; border-radius: 4px; border: 1px solid #1a1a1a; margin-bottom: 24px; display: block; }
+  video { width: 100%; border-radius: 4px; margin-bottom: 24px; border: 1px solid #1a1a1a; display: block; }
+  
+  .finding { background: #111; border-left: 3px solid #7ecfcf; padding: 16px 20px; border-radius: 0 4px 4px 0; margin-bottom: 24px; }
+  .finding p { color: #ccc; margin: 0; font-size: 0.9rem; font-style: italic; }
+  footer { border-top: 1px solid #222; padding: 40px; text-align: center; color: #444; font-size: 0.8rem; }
 
-      <p class="project-desc">
-        This project visualizes the structural transitions of mammalian F1Fo-ATP synthase across three distinct functional states. After generating a continuous coordinate trajectory via conformational morphing, the structural data was integrated into Blender using the Molecular Nodes plugin. To ground the protein in its biological environment, I built a procedural lipid bilayer using Geometry Nodes, texturing the membrane with a dielectric shader utilizing subsurface scattering to mimic the realistic translucency of lipid heads. The entire scene is enclosed in a low-density light blue volumetric box to simulate a crowded intracellular matrix. To produce a seamless portfolio loop, the animation parameters were synchronized so that the coordinate states, the procedural membrane fluctuations, and the volumetric noise fields interpolate perfectly across the loop boundary without any visible cuts.
-      </p>
-
-      <div class="grid-2">
-        <div class="media-wrapper"><img src="far_shot.png" alt="ATP Synthase Perspective View"></div>
-        <div class="media-wrapper"><img src="pan_shot.png" alt="ATP Synthase Close Up"></div>
-      </div>
-
-      <div class="media-wrapper">
-        <img src="nodes.png" alt="Blender Geometry Nodes Setup Blueprint">
-      </div>
-
-      <div class="lab-note">
-        <p>Blender Note: Ensuring a seamless loop with ambient volumetrics requires mapping the texture noise coordinates over a continuous circular path in 4D space over time. This keeps the environment completely stable when transitioning between the final frame and frame zero.</p>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         PROJECT BLOCK 2
-         ========================================== -->
-    <section class="project-card" id="project2">
-      <h2>Subsurface Scattering & Molecular Dynamics of the Human TrkA Receptor</h2>
-      <p class="tech-meta">ZENODO TRAJECTORY · MOLECULAR NODES · BLENDER GEOMETRY NODES · CYCLES</p>
-      
-      <div class="media-wrapper">
-        <video controls loop muted autoplay playsinline>
-          <source src="TrkA_Dynamics.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <p class="project-desc">
-        For this project, I animated a 500-frame molecular dynamics simulation of the human TrkA receptor protein embedded inside a fluid lipid bilayer membrane. To get a highly organic, translucent look for the lipids without sacrificing performance, I customized the underlying node tree to route the atom coordinates through an optimized mesh-instancing pipeline. The simulation is rendered inside a high-contrast studio scene with heavy edge backlighting and a reflective, high-roughness floor plane to highlight the moving silhouettes of the protein loops and the thermal fluctuations of the surrounding membrane matrix.
-      </p>
-
-      <div class="lab-note">
-        <p>Blender Note: Native Cycles point clouds can break down when calculating manual subsurface scattering, turning entirely black. Swapping the point instances out for low-poly Ico Spheres (Subdivisions: 1) paired with a 'Set Shade Smooth' node creates a water-tight 3D mesh volume that allows subsurface light absorption to render properly without running out of memory.</p>
-      </div>
-
-      <br><br><br>
-
-      <h2>Procedural Membrane Animation of the Human Secretin Receptor</h2>
-      <p class="tech-meta">PDB: 6WZG · OPM DATABASE · BLENDER GEOMETRY NODES · CYCLES</p>
-      
-      <div class="media-wrapper">
-        <video controls loop muted autoplay playsinline>
-          <source src="Membrane_Video.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <p class="project-desc">
-        For this project, I wanted to show a protein actually sitting inside a cell membrane instead of just floating in empty space. I used the raw coordinates for the human secretin receptor complex (PDB: 6WZG) and referenced the OPM database to figure out exactly how the protein aligns with the lipid bilayer. Instead of using a heavy physics simulation, I built the entire membrane procedurally using Blender Geometry Nodes to scatter the individual lipid molecules over a wavy surface. To make the scene look dynamic, I set up the nodes to rapidly spin the lipid tails on their local Z-axes, creating a fast-moving, fluid look for the hydrophobic core while keeping the main protein anchored. I did the final render in Cycles to get clean lighting and realistic depth through the membrane layer.
-      </p>
-
-      <div class="media-wrapper">
-        <img src="Membrane_Far.png" alt="Secretin Receptor Structural Render">
-      </div>
-
-      <div class="lab-note">
-        <p>Blender Note: Using Geometry Nodes lets me animate the membrane fluid dynamics without lagging the viewport. Spinning the tail vertices locally simulates kinetic motion in the hydrophobic core while keeping the rest of the layout completely stable.</p>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         PROJECT BLOCK 3
-         ========================================== -->
-    <section class="project-card" id="project3">
-      <h2>Cinematic Glass Render of Lactoferrin</h2>
-      <p class="tech-meta">PDB: 1LFG · UCSF CHIMERAX · BLENDER (CYCLES)</p>
-      
-      <div class="media-wrapper">
-        <video controls loop muted autoplay playsinline>
-          <source src="Lactoferrin_Animation.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <p class="project-desc">
-        To try out a more artistic, cinematic rendering style, I imported human lactoferrin (PDB: 1LFG) from UCSF ChimeraX into Blender. Instead of using a basic plastic look, I designed a custom dielectric glass shader for the structure to see how light would refract and transmit through the internal folds. I set up a dark studio environment with two bright rim lights to catch the outer edges of the alpha-helices and beta-sheets, then rendered the animation using the Cycles engine for clean light behavior and path-tracing reflections.
-      </p>
-
-      <div class="media-wrapper">
-        <img src="Lactoferrin_Cinematic_Zoom.png" alt="Glass Lactoferrin High Refraction Closeup">
-      </div>
-
-      <div class="lab-note">
-        <p>Blender Note: Moving structural data into a ray-tracing engine like Cycles lets me play around with complex glass physics and studio lighting, making the molecular structure look like a modern sculpture.</p>
-      </div>
-
-      <br><br><br>
-
-      <h2>Visualizing Imatinib Binding to ABL1 Kinase</h2>
-      <p class="tech-meta">PDB: 2HYY · UCSF CHIMERAX</p>
-      
-      <div class="media-wrapper">
-        <video controls loop muted autoplay playsinline>
-          <source src="ABL1_imatinib_360.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <p class="project-desc">
-        I wanted to look into how cancer drugs physically fit into their target proteins, so I pulled the crystal structure of the ABL1 kinase domain bound with the drug imatinib (Gleevee) from the PDB database (2HYY). Using UCSF ChimeraX, I isolated the active site to find the specific connection points between the molecule and the protein. I used the measurement tools to find a crucial hydrogen bond of 3.014Å between the drug and the Thr315 residue, which is the exact spot that gets messed up in patients who develop resistance to the treatment.
-      </p>
-
-      <div class="grid-2">
-        <div class="media-wrapper"><img src="ABL1_imatinib_wide.png" alt="ABL1 Kinase Wide Structural Distribution"></div>
-        <div class="media-wrapper"><img src="ABL1_imatinib_closeup.png" alt="Active Site Structural Layout"></div>
-      </div>
-
-      <div class="media-wrapper">
-        <img src="ABL1_Thr315_distance.png" alt="Thr315 Hydrogen Bond Distance Verification">
-      </div>
-
-      <div class="lab-note">
-        <p>Key Finding: Measured a 3.014Å hydrogen bond between the Thr315 residue and imatinib using ChimeraX tools, mapping out the precise target location where resistance mutations typically happen.</p>
-      </div>
-
-      <br><br><br>
-
-      <h2>AlphaFold Confidence Mapping on Hemoglobin Beta</h2>
-      <p class="tech-meta">UNIPROT: P68871 · UCSF CHIMERAX · ALPHAFOLD V2</p>
-      
-      <div class="media-wrapper">
-        <video controls loop muted autoplay playsinline>
-          <source src="hemoglobin_beta_360_rotation.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <p class="project-desc">
-        I wanted to see how reliable AlphaFold predictions are across different parts of a structure, so I imported the model for the human hemoglobin beta subunit (UniProt: P68871) into UCSF ChimeraX. I set up the model to color-code itself based on its pLDDT confidence scores. The main body of the protein turned completely blue, showing super high prediction confidence (over 90) across the helices. However, the very tip of the N-terminal tail lit up with low-confidence colors (under 70), showing how the model struggles a bit with floppy, loose ends that usually need other proteins around to snap into place.
-      </p>
-
-      <div class="media-wrapper">
-        <img src="nterminus_low_confidence.png" alt="N-Terminal Tail Dynamic Tail Highlight">
-      </div>
-
-      <div class="lab-note">
-        <p>Key Finding: The core globin bundle scored above 90 for high confidence, while the first five residues at the N-terminus dropped below 70, highlighting the flexible, unstructured regions of the prediction model.</p>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FIXED RIGHT TRACKING GRAPHIC -->
-  <div class="nav-line"></div>
-  <nav class="vol-menu">
-    <a href="#project1" class="vol-item active">03</a>
-    <a href="#project2" class="vol-item">02</a>
-    <a href="#project3" class="vol-item">01</a>
-  </nav>
-
-</div>
-
-<!-- LIGHTWEIGHT VIEWPORT TRACKER SCRIPT -->
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('.project-card');
-    const navItems = document.querySelectorAll('.vol-item');
-
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 120) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('href') === `#${current}`) {
-          item.classList.add('active');
-        }
-      });
-    });
-  });
-</script>
-
-</body>
-</html>
+  /* Lightbox Styles */
+  .lightbox-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(5, 5, 5, 0.95); display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1000;
+  }
+  .lightbox-overlay.active { opacity: 1; pointer-events: auto; }
+  .lightbox-container { position: relative; max-width: 90%; max-height: 90%; overflow: hidden; border-radius: 4px; }
+  .lightbox-img { max-width: 100%; max-height: 85vh; object-fit: contain; transition: transform 0.2s ease; cursor: zoom-in; display: block; }
+  .lightbox-img.zoomed { transform: scale(2); cursor: zoom-out; }
+  .lightbox-close { position: absolute; top: 20px; right: 20px;
