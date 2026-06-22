@@ -15,6 +15,12 @@
     max-width: 1200px;
     margin: 0 auto;
   }
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .header-text { flex: 1; }
   header h1 { 
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 2.2rem; 
@@ -29,6 +35,25 @@
     font-size: 0.85rem; 
     letter-spacing: 2px; 
     text-transform: uppercase;
+  }
+
+  /* BACK BUTTON NAVIGATION */
+  .back-btn {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.8rem;
+    color: #555;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid #222;
+    padding: 10px 18px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  .back-btn:hover {
+    color: #7ecfcf;
+    border-color: #7ecfcf;
+    background: rgba(126, 207, 207, 0.03);
   }
   
   /* Main layout split */
@@ -88,6 +113,8 @@
     .feed { max-width: 100%; }
   }
   @media (max-width: 768px) {
+    .header-content { flex-direction: column; gap: 20px; }
+    .back-btn { align-self: flex-start; }
     .filled-grid { grid-template-columns: 1fr; }
     .filled-grid img { height: 350px; }
   }
@@ -96,8 +123,13 @@
 <body>
 
 <header>
-  <h1>LEON TRAJKOVSKI</h1>
-  <p>Structural Biology · Molecular Visualization · Bioinformatics</p>
+  <div class="header-content">
+    <div class="header-text">
+      <h1>LEON TRAJKOVSKI</h1>
+      <p>Structural Biology · Molecular Visualization · Bioinformatics</p>
+    </div>
+    <a href="index.html" class="back-btn">← Back to Hub</a>
+  </div>
 </header>
 
 <div class="portfolio-container">
