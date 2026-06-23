@@ -8,71 +8,30 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: #0d0d0d; color: #e8e8e8; font-family: 'Georgia', serif; }
   
-  /* HEADER STYLES */
-  header { 
-    padding: 80px 40px 50px; 
-    border-bottom: 1px solid #1a1a1a; 
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
+  header { padding: 80px 40px 50px; border-bottom: 1px solid #1a1a1a; max-width: 1200px; margin: 0 auto; }
+  .header-content { display: flex; justify-content: space-between; align-items: flex-start; }
   .header-text { flex: 1; }
-  header h1 { 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 2.2rem; 
-    font-weight: 300; 
-    letter-spacing: 5px; 
-    color: #ffffff; 
-  }
-  header p { 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    margin-top: 12px; 
-    color: #666; 
-    font-size: 0.85rem; 
-    letter-spacing: 2px; 
-    text-transform: uppercase;
-  }
+  header h1 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 2.2rem; font-weight: 300; letter-spacing: 5px; color: #ffffff; }
+  header p { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin-top: 12px; color: #666; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; }
 
-  /* BACK BUTTON NAVIGATION */
-  .back-btn {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 0.8rem;
-    color: #555;
-    text-decoration: none;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border: 1px solid #222;
-    padding: 10px 18px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-  }
-  .back-btn:hover {
-    color: #bfa38a;
-    border-color: #bfa38a;
-    background: rgba(191, 163, 138, 0.03);
-  }
+  .back-btn { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 0.8rem; color: #555; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; border: 1px solid #222; padding: 10px 18px; border-radius: 4px; transition: all 0.3s ease; }
+  .back-btn:hover { color: #bfa38a; border-color: #bfa38a; background: rgba(191, 163, 138, 0.03); }
   
-  /* Main layout split */
   .portfolio-container { position: relative; max-width: 1200px; margin: 0 auto; display: flex; }
   .feed { flex: 1; max-width: 960px; padding: 0 40px; margin: 0 auto; }
   
-  /* Project blocks */
   .project { margin: 60px auto; scroll-margin-top: 80px; }
   .project h2 { font-size: 1.4rem; font-weight: normal; color: #bfa38a; margin-bottom: 8px; }
   .project .meta { font-size: 0.8rem; color: #555; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
   .project p { line-height: 1.8; color: #bbb; margin-bottom: 24px; font-size: 0.95rem; }
   
-  /* UPDATED GRID: Maintains aspect ratio and prevents cropping */
+  /* UPDATED: object-fit: cover zooms in to fill the entire box */
   .filled-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
   .filled-grid img { 
     width: 100%; 
     aspect-ratio: 16 / 9; 
-    object-fit: contain; 
-    background-color: #0d0d0d;
+    object-fit: cover; 
+    object-position: center;
     border-radius: 4px; 
     border: 1px solid #1a1a1a; 
     cursor: pointer; 
@@ -85,12 +44,7 @@
   
   footer { border-top: 1px solid #222; padding: 40px; text-align: center; color: #444; font-size: 0.8rem; }
 
-  /* Lightbox Styles */
-  .lightbox-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(5, 5, 5, 0.95); display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1000;
-  }
+  .lightbox-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.95); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1000; }
   .lightbox-overlay.active { opacity: 1; pointer-events: auto; }
   .lightbox-container { position: relative; max-width: 90%; max-height: 90%; overflow: hidden; border-radius: 4px; }
   .lightbox-img { max-width: 100%; max-height: 85vh; object-fit: contain; transition: transform 0.2s ease; cursor: zoom-in; display: block; }
@@ -98,12 +52,7 @@
   .lightbox-close { position: absolute; top: 20px; right: 20px; color: #888; font-size: 1.5rem; cursor: pointer; font-family: sans-serif; transition: color 0.2s; }
   .lightbox-close:hover { color: #fff; }
 
-  @media (max-width: 1024px) { .feed { max-width: 100%; } }
-  @media (max-width: 768px) {
-    .header-content { flex-direction: column; gap: 20px; }
-    .back-btn { align-self: flex-start; }
-    .filled-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 768px) { .header-content { flex-direction: column; gap: 20px; } .filled-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -120,16 +69,10 @@
 
 <div class="portfolio-container">
   <div class="feed">
-
     <section class="project">
       <h2>24-Well Centrifuge Tube Rack</h2>
       <div class="meta">Parametric CAD · Design for Manufacturing</div>
-      <p>
-        A 6x4 centrifuge tube rack designed in Autodesk Fusion 360, focusing on precision tolerances 
-        and manufacturability. The design utilizes a systematic approach to fillet application, 
-        applying a 5mm primary radius to exterior edges for ergonomic handling and a 1mm radius 
-        to all internal wells to mitigate structural stress concentrations.
-      </p>
+      <p>A 6x4 centrifuge tube rack designed in Autodesk Fusion 360, focusing on precision tolerances and manufacturability.</p>
 
       <div class="filled-grid">
         <img src="CTR.png" alt="Centrifuge Tube Rack Render" onclick="openLightbox('CTR.png')">
@@ -137,16 +80,13 @@
       </div>
 
       <div class="finding">
-        <p><strong>Engineering Insight:</strong> Section analysis confirmed uniform wall thickness throughout the geometry, validated via Fusion 360's inspection tools to ensure structural integrity and consistent plastic injection flow.</p>
+        <p><strong>Engineering Insight:</strong> Section analysis confirmed uniform wall thickness throughout the geometry, validated via Fusion 360's inspection tools.</p>
       </div>
     </section>
-
   </div>
 </div>
  
-<footer>
-  Leon Trajkovski · leontrajkovski9@gmail.com · Built with HTML & CSS
-</footer>
+<footer>Leon Trajkovski · leontrajkovski9@gmail.com · Built with HTML & CSS</footer>
 
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
   <span class="lightbox-close">&times;</span>
@@ -158,34 +98,9 @@
 <script>
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-target');
-
-  function openLightbox(src) {
-    lightboxImg.src = src;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox(e) {
-    if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
-      lightbox.classList.remove('active');
-      lightboxImg.classList.remove('zoomed');
-      document.body.style.overflow = '';
-    }
-  }
-
-  function toggleZoom(e) {
-    e.stopPropagation();
-    lightboxImg.classList.toggle('zoomed');
-    if (lightboxImg.classList.contains('zoomed')) {
-      lightbox.onmousemove = (moveEvent) => {
-        const x = (moveEvent.clientX / window.innerWidth) * 100;
-        const y = (moveEvent.clientY / window.innerHeight) * 100;
-        lightboxImg.style.transformOrigin = `${x}% ${y}%`;
-      };
-    } else {
-      lightbox.onmousemove = null;
-    }
-  }
+  function openLightbox(src) { lightboxImg.src = src; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closeLightbox(e) { if (e.target === lightbox || e.target.classList.contains('lightbox-close')) { lightbox.classList.remove('active'); lightboxImg.classList.remove('zoomed'); document.body.style.overflow = ''; } }
+  function toggleZoom(e) { e.stopPropagation(); lightboxImg.classList.toggle('zoomed'); lightbox.onmousemove = lightboxImg.classList.contains('zoomed') ? (m) => { const x = (m.clientX / window.innerWidth) * 100; const y = (m.clientY / window.innerHeight) * 100; lightboxImg.style.transformOrigin = `${x}% ${y}%`; } : null; }
 </script>
 
 </body>
