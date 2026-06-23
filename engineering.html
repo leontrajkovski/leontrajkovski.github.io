@@ -66,8 +66,18 @@
   .project .meta { font-size: 0.8rem; color: #555; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
   .project p { line-height: 1.8; color: #bbb; margin-bottom: 24px; font-size: 0.95rem; }
   
+  /* UPDATED GRID: Maintains aspect ratio and prevents cropping */
   .filled-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
-  .filled-grid img { width: 100%; height: 450px; object-fit: cover; border-radius: 4px; border: 1px solid #1a1a1a; cursor: pointer; transition: border-color 0.3s, transform 0.2s; }
+  .filled-grid img { 
+    width: 100%; 
+    aspect-ratio: 16 / 9; 
+    object-fit: contain; 
+    background-color: #0d0d0d;
+    border-radius: 4px; 
+    border: 1px solid #1a1a1a; 
+    cursor: pointer; 
+    transition: border-color 0.3s, transform 0.2s; 
+  }
   .filled-grid img:hover { border-color: #bfa38a; }
   
   .finding { background: #111; border-left: 3px solid #bfa38a; padding: 16px 20px; border-radius: 0 4px 4px 0; margin-bottom: 24px; }
@@ -93,7 +103,6 @@
     .header-content { flex-direction: column; gap: 20px; }
     .back-btn { align-self: flex-start; }
     .filled-grid { grid-template-columns: 1fr; }
-    .filled-grid img { height: 350px; }
   }
 </style>
 </head>
