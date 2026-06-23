@@ -167,7 +167,7 @@
 
   <a href="engineering.html" class="panel engineering">
     <h2>BIOMEDICAL ENGINEERING</h2>
-    <p>Designing physical, functional mechanisms inside parametric CAD platforms. Testing structural load limits and fluid behaviors with finite element simulations.</p>
+    <p>Designing physical lab infrastructure via parametric CAD. Currently focused on manufacturing-ready geometries including complex fillets, draft angles, and structural section analysis for material optimization.</p>
   </a>
 
 </div>
@@ -179,15 +179,13 @@
     let currentIdx = 0;
     let timeoutId = null;
 
-    // Define custom display durations (in milliseconds) for each track
     const playlistPlaylist = [
-      { index: 0, duration: 6000 }, // ATP Synthase: Let it run fully
-      { index: 1, duration: 4000 }, // TrkA pink trajectory: Cut down by 2 seconds
-      { index: 2, duration: 3800 }, // Secretin: Cut short so it hides the non-seamless seam break
-      { index: 3, duration: 5500 }  // Lactoferrin: Screen time
+      { index: 0, duration: 6000 },
+      { index: 1, duration: 4000 },
+      { index: 2, duration: 3800 },
+      { index: 3, duration: 5500 }
     ];
 
-    // Fire up all videos background-buffered 
     videos.forEach(v => v.play().catch(() => {}));
 
     function runSequence() {
@@ -198,20 +196,17 @@
         currentIdx = (currentIdx + 1) % videos.length;
         const nextVideo = videos[currentIdx];
 
-        // Specific start-time override for the Lactoferrin glass render (index 3)
         if (currentIdx === 3 && lactoVideo) {
-          lactoVideo.currentTime = 1.0; // Starts exactly 1 second in to catch the sweet spot instantly
+          lactoVideo.currentTime = 1.0;
         }
 
         nextVideo.classList.add("active");
         activeVideo.classList.remove("active");
 
-        // Loop the script onto the next timing block
         runSequence();
       }, currentConfig.duration);
     }
 
-    // Initialize the custom timer sequence
     runSequence();
   });
 </script>
