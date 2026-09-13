@@ -24,11 +24,13 @@
     max-width: 1200px;
     margin: 0 auto;
   }
+
   .header-content {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
   }
+
   .header-text { flex: 1; }
   header h1 { 
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -37,6 +39,7 @@
     letter-spacing: 5px; 
     color: #ffffff; 
   }
+
   header p { 
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin-top: 12px; 
@@ -59,6 +62,7 @@
     border-radius: 4px;
     transition: all 0.3s ease;
   }
+
   .back-btn:hover {
     color: #7ecfcf;
     border-color: #7ecfcf;
@@ -75,13 +79,14 @@
   
   .project p { line-height: 1.8; color: #bbb; margin-bottom: 24px; font-size: 0.95rem; }
   
-  /* Uniform visual grid to completely eliminate layout gaps */
+  /* Uniform visual grid */
   .filled-grid { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
     gap: 12px; 
     margin-bottom: 24px; 
   }
+
   .filled-grid img { 
     width: 100%; 
     height: 450px; 
@@ -91,6 +96,7 @@
     cursor: pointer; 
     transition: border-color 0.3s, transform 0.2s; 
   }
+
   .filled-grid img:hover { border-color: #7ecfcf; }
 
   .images { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
@@ -110,6 +116,7 @@
     background: rgba(5, 5, 5, 0.95); display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1000;
   }
+
   .lightbox-overlay.active { opacity: 1; pointer-events: auto; }
   .lightbox-container { position: relative; max-width: 90%; max-height: 90%; overflow: hidden; border-radius: 4px; }
   .lightbox-img { max-width: 100%; max-height: 85vh; object-fit: contain; transition: transform 0.2s ease; cursor: zoom-in; display: block; }
@@ -121,6 +128,7 @@
   @media (max-width: 1024px) {
     .feed { max-width: 100%; }
   }
+
   @media (max-width: 768px) {
     .header-content { flex-direction: column; gap: 20px; }
     .back-btn { align-self: flex-start; }
@@ -145,122 +153,196 @@
   
   <div class="feed">
 
+    <!-- JACS COVER PROJECT -->
+    <div class="project" id="project-jacs">
+      <h2>JACS Cover Art: Bacterial Proteasome Activator</h2>
+      <div class="meta">PDB: 8RGX · Vahidi Lab, University of Guelph · Blender · Cycles · Eevee</div>
+
+      <p>I created a molecular illustration for a research project from the Vahidi Lab at the University of Guelph that was submitted for consideration as cover artwork for the Journal of the American Chemical Society. The project focused on the bacterial proteasome activator (Bpa) and used the PDB structure 8RGX.</p>
+
+      <p>I modeled the mass spectrometry machine from reference photographs and built the scene around the protein structure. I imported the protein from the PDB, then worked on the protein materials and colours, lighting, volumetrics, and the overall composition. I also UV-unwrapped the modeled machine so I could control its surfaces and materials more precisely.</p>
+
+      <p>I built separate scene layers for the machine, protein, and hologram so they could be adjusted independently. The machine and background were rendered in Eevee, while the protein was rendered in Cycles for more detailed lighting and reflections. I also incorporated a scientific graph supplied by the research team and revised the artwork based on their feedback before preparing the final high-resolution version.</p>
+
+      <div class="filled-grid">
+        <img src="JACS_Final_600DPI.png" alt="Final JACS cover artwork" onclick="openLightbox(this.src)">
+        <img src="Machine_Modeled.png" alt="3D modeled mass spectrometry machine" onclick="openLightbox(this.src)">
+        <img src="Progress_1.png" alt="Progress of JACS visualization" onclick="openLightbox(this.src)">
+        <img src="Progress_2.png" alt="Progress of JACS visualization" onclick="openLightbox(this.src)">
+      </div>
+
+      <div class="finding">
+        <p>Project Note: This was my first molecular visualization project created directly with a research lab, including developing the visual concept, responding to scientific feedback, and preparing the final artwork for journal submission.</p>
+      </div>
+    </div>
+
+
+    <!-- 2MX4 / IDP PROJECT -->
+    <div class="project" id="project-2mx4">
+      <h2>Visualizing the Conformational Ensemble of Phosphorylated 4E-BP2</h2>
+      <div class="meta">PDB: 2MX4 · UCSF ChimeraX · Molecular Nodes · Blender</div>
+
+      <p>I wanted to explore how an NMR structure can represent multiple possible conformations instead of one fixed shape. PDB 2MX4 is a solution NMR structure of phosphorylated human 4E-BP2 containing 20 deposited conformers. I used these conformers as discrete structural models and built an animation around the differences between them.</p>
+
+      <p>I also created a procedural colour field using global coordinates, so the colour of different regions changes as their position changes between conformers. This makes the structural differences easier to see while keeping the colour variation connected to the molecule's position in space.</p>
+
+      <p>For the final look, I used subsurface scattering and procedural roughness variation to move away from a basic plastic material and create a more detailed, photorealistic appearance. The visual style is intentionally artistic, while the underlying structural models come from the deposited PDB entry.</p>
+
+      <video autoplay loop muted playsinline controls>
+        <source src="2MX4_360.mp4" type="video/mp4">
+      </video>
+
+      <video autoplay loop muted playsinline controls>
+        <source src="2MX4_Left-Right_Pan.mp4" type="video/mp4">
+      </video>
+
+      <div class="finding">
+        <p>Project Note: The animation is a visual representation of the differences between the deposited conformers, rather than a claim that the protein follows that exact sequence as a real-time trajectory.</p>
+      </div>
+    </div>
+
+
+    <!-- ATP SYNTHASE -->
     <div class="project" id="project-atp-synthase">
-      <h2>Conformational Morphing & Procedural Modeling of F1Fo-ATP Synthase</h2>
+      <h2>Animating Different States of F1Fo-ATP Synthase</h2>
       <div class="meta">PDB: 5ARE, 5ARI, 5FIL · Molecular Nodes · Blender Geometry Nodes · Cycles</div>
 
       <video autoplay loop muted playsinline controls>
         <source src="atp_synthase_rotation.mp4" type="video/mp4">
       </video>
 
-      <p>This project visualizes the structural transitions of mammalian F1Fo-ATP synthase across three distinct functional states (PDB: 5ARE, 5ARI, 5FIL). After generating a continuous coordinate trajectory via conformational morphing, the structural data was integrated into Blender using the Molecular Nodes plugin. To ground the protein in its biological environment, I built a procedural lipid bilayer using Geometry Nodes, texturing the membrane with a dielectric shader utilizing subsurface scattering to mimic the realistic translucency of lipid heads. The entire scene is enclosed in a low-density light blue volumetric box to simulate a crowded intracellular matrix. To produce a seamless portfolio loop, the animation parameters were synchronized so that the coordinate states, the procedural membrane fluctuations, and the volumetric noise fields interpolate perfectly across the loop boundary without any visible cuts.</p>
+      <p>I used three different PDB structures of mammalian F1Fo-ATP synthase to create a visualization of how its structure changes between different states. I brought the structures into Blender using Molecular Nodes and created a smooth transition between them.</p>
+
+      <p>I also built the surrounding lipid membrane procedurally with Geometry Nodes instead of modeling every lipid by hand. I used subsurface scattering to give the lipid heads a slightly translucent appearance and added a low-density volume around the scene to create more environmental depth.</p>
+
+      <p>One of the main technical challenges was making the animation loop smoothly. I synchronized the structural animation, membrane movement, and volumetric effects so the final frame connects back to the first without an obvious jump.</p>
 
       <div class="filled-grid">
-        <img src="pan_shot.png" alt="Widescreen cinematic layout of ATP synthase in mitochondrial membrane" onclick="openLightbox(this.src)">
-        <img src="far_shot.png" alt="Vertical macro composition highlighting volumetric light transmission" onclick="openLightbox(this.src)">
+        <img src="pan_shot.png" alt="ATP synthase in a mitochondrial membrane" onclick="openLightbox(this.src)">
+        <img src="far_shot.png" alt="Wide ATP synthase composition" onclick="openLightbox(this.src)">
       </div>
 
       <div class="finding">
-        <p>Blender Note: Ensuring a seamless loop with ambient volumetrics requires mapping the texture noise coordinates over a continuous circular path in 4D space over time. This keeps the environment completely stable when transitioning between the final frame and frame zero.</p>
+        <p>Blender Note: I used procedural systems for the membrane and environment so that I could control the animation without manually placing and animating every molecule.</p>
       </div>
 
-      <img class="full-width zoomable-img" src="nodes.png" alt="Geometry Nodes workspace for procedural membrane distribution and loop handling" onclick="openLightbox(this.src)">
+      <img class="full-width zoomable-img" src="nodes.png" alt="Geometry Nodes setup for ATP synthase membrane" onclick="openLightbox(this.src)">
     </div>
 
+
+    <!-- TRKA -->
     <div class="project" id="project-trka">
-      <h2>Subsurface Scattering & Molecular Dynamics of the Human TrkA Receptor</h2>
+      <h2>Animating Molecular Dynamics of the Human TrkA Receptor</h2>
       <div class="meta">Zenodo Trajectory · Molecular Nodes · Blender Geometry Nodes · Cycles</div>
 
-      <p>For this project, I animated a 500-frame molecular dynamics simulation of the human TrkA receptor protein embedded inside a fluid lipid bilayer membrane. To get a highly organic, translucent look for the lipids without sacrificing performance, I customized the underlying node tree to route the atom coordinates through an optimized mesh-instancing pipeline. The simulation is rendered inside a high-contrast studio scene with heavy edge backlighting and a reflective, high-roughness floor plane to highlight the moving silhouettes of the protein loops and the thermal fluctuations of the surrounding membrane matrix.</p>
+      <p>For this project, I worked with a 500-frame molecular dynamics simulation of the human TrkA receptor inside a lipid membrane. I wanted to make the movement in the simulation easier to see while keeping the protein and membrane visually clear.</p>
+
+      <p>I used a Geometry Nodes setup to instance the lipids instead of building each one separately. I also adjusted the material and lighting to give the membrane a translucent appearance while keeping the moving protein easy to see.</p>
 
       <video autoplay loop muted playsinline controls>
         <source src="TrkA_Dynamics.mp4" type="video/mp4">
       </video>
 
       <div class="finding">
-        <p>Blender Note: Native Cycles point clouds can break down when calculating manual subsurface scattering, turning entirely black. Swapping the point instances out for low-poly Ico Spheres (Subdivisions: 1) paired with a 'Set Shade Smooth' node creates a water-tight 3D mesh volume that allows subsurface light absorption to render properly without running out of memory.</p>
+        <p>Blender Note: I found that low-poly Ico Spheres with smooth shading worked better for the membrane when using subsurface scattering in Cycles, while also keeping the scene manageable to render.</p>
       </div>
     </div>
 
+
+    <!-- SECRETIN RECEPTOR -->
     <div class="project" id="project-membrane">
-      <h2>Procedural Membrane Animation of the Human Secretin Receptor</h2>
+      <h2>Building a Membrane Around the Human Secretin Receptor</h2>
       <div class="meta">PDB: 6WZG · OPM Database · Blender Geometry Nodes · Cycles</div>
 
-      <p>For this project, I wanted to show a protein actually sitting inside a cell membrane instead of just floating in empty space. I used the raw coordinates for the human secretin receptor complex (PDB: 6WZG) and referenced the OPM database to figure out exactly how the protein aligns with the lipid bilayer. Instead of using a heavy physics simulation, I built the entire membrane procedurally using Blender Geometry Nodes to scatter the individual lipid molecules over a wavy surface. To make the scene look dynamic, I set up the nodes to rapidly spin the lipid tails on their local Z-axes, creating a fast-moving, fluid look for the hydrophobic core while keeping the main protein anchored. I did the final render in Cycles to get clean lighting and realistic depth through the membrane layer.</p>
+      <p>I wanted to show a membrane protein in a more realistic environment instead of displaying it by itself. I used the human secretin receptor structure from the PDB and used the OPM database to help position the protein correctly relative to the membrane.</p>
+
+      <p>I then created the membrane procedurally using Blender Geometry Nodes. The system scatters lipid molecules across a curved surface and gives them controlled movement, creating a dynamic look without using a full physics simulation. The protein remains anchored while the surrounding lipid tails move.</p>
 
       <video autoplay loop muted playsinline controls>
         <source src="Membrane_Video.mp4" type="video/mp4">
       </video>
 
-      <img class="full-width zoomable-img" src="Membrane_Far.png" alt="Wide view of secretin receptor complex in lipid bilayer" onclick="openLightbox(this.src)">
+      <img class="full-width zoomable-img" src="Membrane_Far.png" alt="Secretin receptor in a lipid bilayer" onclick="openLightbox(this.src)">
 
       <div class="finding">
-        <p>Blender Note: Using Geometry Nodes lets me animate the membrane fluid dynamics without lagging the viewport. Spinning the tail vertices locally simulates kinetic motion in the hydrophobic core while keeping the rest of the layout completely stable.</p>
+        <p>Blender Note: Geometry Nodes let me create the membrane procedurally, making it easier to control the density and movement of the lipids without making the Blender scene unnecessarily heavy.</p>
       </div>
     </div>
-    
-    <div class="project" id="project-lactoferrin">
-      <h2>Cinematic Glass Render of Lactoferrin</h2>
-      <div class="meta">PDB: 1LFG · UCSF ChimeraX · Blender (Cycles)</div>
 
-      <p>To try out a more artistic, cinematic rendering style, I imported human lactoferrin (PDB: 1LFG) from UCSF ChimeraX into Blender. Instead of using a basic plastic look, I designed a custom dielectric glass shader for the structure to see how light would refract and transmit through the internal folds. I set up a dark studio environment with two bright rim lights to catch the outer edges of the alpha-helices and beta-sheets, then rendered the animation using the Cycles engine for clean light behavior and path-tracing reflections.</p>
+
+    <!-- LACTOFERRIN -->
+    <div class="project" id="project-lactoferrin">
+      <h2>Cinematic Rendering of Human Lactoferrin</h2>
+      <div class="meta">PDB: 1LFG · UCSF ChimeraX · Blender · Cycles</div>
+
+      <p>I wanted to experiment with a more artistic way of presenting a molecular structure, so I imported human lactoferrin from UCSF ChimeraX into Blender and built a glass-like material around the protein.</p>
+
+      <p>I used a custom material to control how light passes through the structure, then built a dark studio environment with rim lighting to highlight the outer shapes of the alpha-helices and beta-sheets. The animation was rendered in Cycles for more realistic reflections and light behavior.</p>
 
       <video autoplay loop muted playsinline controls>
         <source src="Lactoferrin_Animation.mp4" type="video/mp4">
       </video>
 
-      <img class="full-width zoomable-img" src="Lactoferrin_Cinematic_Zoom.png" alt="Lactoferrin glass close-up" onclick="openLightbox(this.src)">
+      <img class="full-width zoomable-img" src="Lactoferrin_Cinematic_Zoom.png" alt="Close-up cinematic render of lactoferrin" onclick="openLightbox(this.src)">
 
       <div class="finding">
-        <p>Blender Note: Moving structural data into a ray-tracing engine like Cycles lets me play around with complex glass physics and studio lighting, making the molecular structure look like a modern sculpture.</p>
+        <p>Blender Note: This project was mainly an experiment in molecular rendering and lighting. I wanted to see how far I could push a molecular structure toward a cinematic visual style.</p>
       </div>
     </div>
 
+
+    <!-- ABL1 -->
     <div class="project" id="project-abl1">
-      <h2>Visualizing Imatinib Binding to ABL1 Kinase</h2>
+      <h2>Exploring Imatinib Binding to ABL1 Kinase</h2>
       <div class="meta">PDB: 2HYY · UCSF ChimeraX</div>
 
-      <p>I wanted to look into how cancer drugs physically fit into their target proteins, so I pulled the crystal structure of the ABL1 kinase domain bound with the drug imatinib (Gleevec) from the PDB database (2HYY). Using UCSF ChimeraX, I isolated the active site to find the specific connection points between the molecule and the protein. I used the measurement tools to find a crucial hydrogen bond of 3.014Å between the drug and the Thr315 residue, which is the exact spot that gets messed up in patients who develop resistance to the treatment.</p>
+      <p>I wanted to explore how a drug can interact with its target protein, so I looked at the crystal structure of the ABL1 kinase domain bound to imatinib (Gleevec). I used UCSF ChimeraX to isolate the binding region and examine how the drug sits inside the protein.</p>
+
+      <p>I also used ChimeraX measurement tools to examine a hydrogen bond between imatinib and the Thr315 residue. Thr315 is an important position associated with imatinib resistance, which made the structure especially interesting to investigate.</p>
 
       <video autoplay loop muted playsinline controls>
         <source src="ABL1_imatinib_360.mp4" type="video/mp4">
       </video>
 
       <div class="images">
-        <img src="ABL1_imatinib_wide.png" alt="ABL1 tetramer wide shot" onclick="openLightbox(this.src)">
-        <img src="ABL1_imatinib_closeup.png" alt="Imatinib binding pocket closeup" onclick="openLightbox(this.src)">
+        <img src="ABL1_imatinib_wide.png" alt="Wide view of ABL1 bound to imatinib" onclick="openLightbox(this.src)">
+        <img src="ABL1_imatinib_closeup.png" alt="Close-up of imatinib binding pocket" onclick="openLightbox(this.src)">
       </div>
-      <img class="full-width zoomable-img" src="ABL1_Thr315_distance.png" alt="Thr315 hydrogen bond measurement" onclick="openLightbox(this.src)">
+
+      <img class="full-width zoomable-img" src="ABL1_Thr315_distance.png" alt="Thr315 interaction with imatinib" onclick="openLightbox(this.src)">
 
       <div class="finding">
-        <p>Key Finding: Measured a 3.014Å hydrogen bond between the Thr315 residue and imatinib using ChimeraX tools, mapping out the precise target location where resistance mutations typically happen.</p>
+        <p>ChimeraX Note: I used the structure and measurement tools in ChimeraX to examine the drug-binding pocket and highlight the location of Thr315.</p>
       </div>
     </div>
 
+
+    <!-- HEMOGLOBIN -->
     <div class="project" id="project-hemoglobin">
-      <h2>AlphaFold Confidence Mapping on Hemoglobin Beta</h2>
+      <h2>Mapping AlphaFold Confidence on Hemoglobin Beta</h2>
       <div class="meta">UniProt: P68871 · UCSF ChimeraX · AlphaFold v2</div>
 
-      <p>I wanted to see how reliable AlphaFold predictions are across different parts of a structure, so I imported the model for the human hemoglobin beta subunit (UniProt: P68871) into UCSF ChimeraX. I set up the model to color-code itself based on its pLDDT confidence scores. The main body of the protein turned completely blue, showing super high prediction confidence (over 90) across the helices. However, the very tip of the N-terminal tail lit up with low-confidence colors (under 70), showing how the model struggles a bit with floppy, loose ends that usually need other proteins around to snap into place.</p>
+      <p>I wanted to explore how the confidence of an AlphaFold prediction can change across different parts of a protein. I used the human hemoglobin beta subunit and coloured the model in ChimeraX using its predicted confidence values.</p>
+
+      <p>Most of the main protein structure had very high confidence, while the flexible N-terminal region had lower confidence. This gave me a simple example of how a prediction can be strong in one part of a protein while being less certain in another.</p>
 
       <video autoplay loop muted playsinline controls>
         <source src="hemoglobin_beta_360_rotation.mp4" type="video/mp4">
       </video>
 
       <div class="images">
-        <img src="full_structure_plddt.png" alt="Hemoglobin beta pLDDT mapping" onclick="openLightbox(this.src)">
-        <img src="nterminus_low_confidence.png" alt="N-terminal low confidence view" onclick="openLightbox(this.src)">
+        <img src="full_structure_plddt.png" alt="Hemoglobin beta with AlphaFold confidence mapping" onclick="openLightbox(this.src)">
+        <img src="nterminus_low_confidence.png" alt="Low-confidence N-terminal region of hemoglobin beta" onclick="openLightbox(this.src)">
       </div>
 
       <div class="finding">
-        <p>Key Finding: The core globin bundle scored above 90 for high confidence, while the first five residues at the N-terminus dropped below 70, highlighting the flexible, unstructured regions of the prediction model.</p>
+        <p>Key Observation: The main globin structure showed much higher confidence than the flexible N-terminal end, making the confidence information visible directly on the structure.</p>
       </div>
     </div>
 
   </div>
-
 </div>
- 
+
 <footer>
   Leon Trajkovski · leontrajkovski9@gmail.com · Built with UCSF ChimeraX & Blender
 </footer>
@@ -273,7 +355,6 @@
 </div>
 
 <script>
-  // Lightbox Logic
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-target');
 
@@ -294,6 +375,7 @@
   function toggleZoom(e) {
     e.stopPropagation();
     lightboxImg.classList.toggle('zoomed');
+
     if (lightboxImg.classList.contains('zoomed')) {
       lightbox.onmousemove = (moveEvent) => {
         const x = (moveEvent.clientX / window.innerWidth) * 100;
