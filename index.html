@@ -1,224 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4JE8GT93J2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JE8GT93J2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JE8GT93J2');
+  </script>
 
-  gtag('config', 'G-4JE8GT93J2');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leon Trajkovski | Hub</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #050505; color: #e8e8e8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow: hidden; }
-  
-  /* HUB CONTAINER */
-  .hub-container {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    position: relative;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leon Trajkovski | Structural Biology Portfolio</title>
 
-  /* SPLIT PANELS */
-  .panel {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 40px;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    z-index: 1;
-  }
-
-  .panel:hover {
-    flex: 1.3;
-  }
-
-  /* BIOLOGY CONTAINER FOR BACKGROUND VIDEOS */
-  .video-wrapper {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -2;
-  }
-
-  .video-wrapper video {
-    position: absolute;
-    top: 50%; left: 50%;
-    min-width: 100%; min-height: 100%;
-    width: auto; height: auto;
-    transform: translate(-50%, -50%) scale(1.02);
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1.2s ease-in-out, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  .video-wrapper video.active {
-    opacity: 0.38;
-  }
-
-  /* PANEL DARK OVERLAYS */
-  .panel::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -1;
-    transition: background 0.5s ease;
-  }
-
-  .panel.biology::before { background: rgba(8, 10, 10, 0.72); border-right: 1px solid #141a1a; }
-  .panel.engineering::before { background: #0b0a09; }
-
-  /* Interactive hover filters */
-  .panel.biology:hover video.active {
-    opacity: 0.65;
-    transform: translate(-50%, -50%) scale(1.06);
-  }
-  .panel.biology:hover::before { background: rgba(5, 12, 12, 0.45); }
-  .panel.engineering:hover::before { background: #120f0d; }
-
-  /* PANEL CONTENT */
-  .panel h2 {
-    font-size: 2.2rem;
-    font-weight: 300;
-    letter-spacing: 4px;
-    margin-bottom: 16px;
-    transition: transform 0.4s ease, color 0.3s ease;
-  }
-  .panel.biology h2 { color: #7ecfcf; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-  .panel.engineering h2 { color: #bfa38a; } 
-
-  .panel p {
-    font-family: 'Georgia', serif;
-    font-size: 0.95rem;
-    color: #949494;
-    max-width: 410px;
-    line-height: 1.7;
-    transition: color 0.3s ease;
-  }
-  
-  .panel:hover h2 { transform: translateY(-8px); }
-  .panel:hover p { color: #dfe6e6; }
-
-  /* HEADER BRANDING */
-  .brand-center {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 10;
-    pointer-events: none;
-    width: 100%;
-  }
-  .brand-center h1 {
-    font-size: 2.6rem;
-    font-weight: 300;
-    letter-spacing: 7px;
-    color: #ffffff;
-    margin-bottom: 6px;
-    text-shadow: 0 4px 16px rgba(0,0,0,0.85);
-  }
-  .brand-center span {
-    font-size: 0.8rem;
-    color: #555;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-
-  /* RESPONSIVE LAYOUT FOR MOBILE */
-  @media (max-width: 768px) {
-    .hub-container { flex-direction: column; height: auto; min-height: 100vh; }
-    .panel { height: 50vh; }
-    .panel:hover { flex: 1; }
-    .video-wrapper video { transform: translate(-50%, -50%) scale(1); }
-    .panel:hover video.active { transform: translate(-50%, -50%) scale(1.03); }
-    .brand-center { top: 6%; }
-    .brand-center h1 { font-size: 1.8rem; }
-  }
-</style>
-
-<link rel="preload" href="atp_synthase_rotation.mp4" as="video" type="video/mp4">
-<link rel="preload" href="TrkA_Dynamics.mp4" as="video" type="video/mp4">
-<link rel="preload" href="Membrane_Video.mp4" as="video" type="video/mp4">
-<link rel="preload" href="Lactoferrin_Animation.mp4" as="video" type="video/mp4">
-
-</head>
-<body>
-
-<div class="brand-center">
-  <h1>LEON TRAJKOVSKI</h1>
-  <span>Interdisciplinary Projects</span>
-</div>
-
-<div class="hub-container">
-  
-  <a href="biology.html" class="panel biology">
-    <div class="video-wrapper" id="bio-video-container">
-      <video class="active" autoplay loop muted playsinline><source src="atp_synthase_rotation.mp4" type="video/mp4"></video>
-      <video autoplay loop muted playsinline><source src="TrkA_Dynamics.mp4" type="video/mp4"></video>
-      <video autoplay loop muted playsinline><source src="Membrane_Video.mp4" type="video/mp4"></video>
-      <video autoplay loop muted playsinline id="lacto-video"><source src="Lactoferrin_Animation.mp4" type="video/mp4"></video>
-    </div>
-    <h2>STRUCTURAL BIOLOGY</h2>
-    <p>Isolating and parsing coordinate data from the PDB using ChimeraX, using Geometry Nodes pipelines in Blender to build seamless structural loops and environmental setups.</p>
-  </a>
-
-  <a href="engineering.html" class="panel engineering">
-    <h2>BIOMEDICAL ENGINEERING (REMAINING PROJECTS WILL BE ADDED VERY SOON)</h2>
-    <p>Designing physical lab infrastructure via parametric CAD. Currently focused on manufacturing-ready geometries including complex fillets, draft angles, and structural section analysis for material optimization.</p>
-  </a>
-
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const videos = document.querySelectorAll("#bio-video-container video");
-    const lactoVideo = document.getElementById("lacto-video");
-    let currentIdx = 0;
-    let timeoutId = null;
-
-    const playlistPlaylist = [
-      { index: 0, duration: 6000 },
-      { index: 1, duration: 4000 },
-      { index: 2, duration: 3800 },
-      { index: 3, duration: 5500 }
-    ];
-
-    videos.forEach(v => v.play().catch(() => {}));
-
-    function runSequence() {
-      const currentConfig = playlistPlaylist[currentIdx];
-      
-      timeoutId = setTimeout(() => {
-        const activeVideo = videos[currentIdx];
-        currentIdx = (currentIdx + 1) % videos.length;
-        const nextVideo = videos[currentIdx];
-
-        if (currentIdx === 3 && lactoVideo) {
-          lactoVideo.currentTime = 1.0;
-        }
-
-        nextVideo.classList.add("active");
-        activeVideo.classList.remove("active");
-
-        runSequence();
-      }, currentConfig.duration);
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    runSequence();
-  });
-</script>
+    body {
+      background: #050505;
+      color: #e8e8e8;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+    }
 
+    .hub-container {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      height: 100svh;
+      position: relative;
+    }
+
+    .panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 1;
+    }
+
+    .panel:hover {
+      flex: 1.3;
+    }
+
+    .video-wrapper {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+    }
+
+    .video-wrapper video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%) scale(1.02);
+      object-fit: cover;
+      opacity: 0;
+      transition:
+        opacity 1.2s ease-in-out,
+        transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .video-wrapper video.active {
+      opacity: 0.38;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      transition: background 0.5s ease;
+    }
+
+    .panel.biology::before {
+      background: rgba(8, 10, 10, 0.72);
+    }
+
+    .panel.biology:hover video.active {
+      opacity: 0.65;
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+
+    .panel.biology:hover::before {
+      background: rgba(5, 12, 12, 0.45);
+    }
+
+    .panel h2 {
+      font-size: 2.2rem;
+      font-weight: 300;
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+      color: #7ecfcf;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.4s ease, color 0.3s ease;
+    }
+
+    .panel p {
+      font-family: Georgia, serif;
+      font-size: 0.95rem;
+      color: #949494;
+      max-width: 540px;
+      line-height: 1.7;
+      transition: color 0.3s ease;
+    }
+
+    .panel:hover h2 {
+      transform: translateY(-8px);
+    }
+
+    .panel:hover p {
+      color: #dfe6e6;
+    }
+
+    .brand-center {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    .brand-center h1 {
+      font-size: 2.6rem;
+      font-weight: 300;
+      letter-spacing: 7px;
+      color: #ffffff;
+      margin-bottom: 6px;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.85);
+    }
+
+    .brand-center span {
+      font-size: 0.8rem;
+      color: #aaa;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .panel {
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 24px;
+      }
+
+      .panel:hover {
+        flex: 1;
+      }
+
+      .video-wrapper video {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .panel.biology:hover video.active {
+        transform: translate(-50%, -50%) scale(1.03);
+      }
+
+      .brand-center {
+        top: 9%;
+      }
+
+      .brand-center h1 {
+        font-size: 1.8rem;
+        letter-spacing: 4px;
+      }
+
+      .brand-center span {
+        font-size: 0.68rem;
+        letter-spacing: 2px;
+      }
+
+      .panel h2 {
+        font-size: 1.7rem;
+        letter-spacing: 3px;
+      }
+
+      .panel p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+
+  <link rel="preload" href="atp_synthase_rotation.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="TrkA_Dynamics.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="Membrane_Video.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="Lactoferrin_Animation.mp4" as="video" type="video/mp4">
+</head>
+
+<body>
+  <div class="brand-center">
+    <h1>LEON TRAJKOVSKI</h1>
+    <span>Structural Biology · Molecular Visualization · Blender</span>
+  </div>
+
+  <main class="hub-container">
+    <a href="biology.html" class="panel biology">
+      <div class="video-wrapper" id="bio-video-container">
+        <video class="active" autoplay loop muted playsinline>
+          <source src="atp_synthase_rotation.mp4" type="video/mp4">
+        </video>
+        <video autoplay loop muted playsinline>
+          <source src="TrkA_Dynamics.mp4" type="video/mp4">
+        </video>
+        <video autoplay loop muted playsinline>
+          <source src="Membrane_Video.mp4" type="video/mp4">
+        </video>
+        <video autoplay loop muted playsinline id="lacto-video">
+          <source src="Lactoferrin_Animation.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <h2>STRUCTURAL BIOLOGY</h2>
+      <p>
+        Isolating and parsing coordinate data from the PDB using ChimeraX,
+        using Geometry Nodes pipelines in Blender to build seamless structural
+        loops and environmental setups.
+      </p>
+    </a>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const videos = document.querySelectorAll("#bio-video-container video");
+      const lactoVideo = document.getElementById("lacto-video");
+      let currentIdx = 0;
+
+      const playlist = [
+        { duration: 6000 },
+        { duration: 4000 },
+        { duration: 3800 },
+        { duration: 5500 }
+      ];
+
+      videos.forEach(video => video.play().catch(() => {}));
+
+      function runSequence() {
+        setTimeout(() => {
+          const activeVideo = videos[currentIdx];
+          currentIdx = (currentIdx + 1) % videos.length;
+          const nextVideo = videos[currentIdx];
+
+          if (currentIdx === 3 && lactoVideo) {
+            lactoVideo.currentTime = 1.0;
+          }
+
+          nextVideo.classList.add("active");
+          activeVideo.classList.remove("active");
+
+          runSequence();
+        }, playlist[currentIdx].duration);
+      }
+
+      if (videos.length > 0) {
+        runSequence();
+      }
+    });
+  </script>
 </body>
 </html>
