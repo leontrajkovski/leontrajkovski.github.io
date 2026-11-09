@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-4JE8GT93J2');
 </script>
 <meta charset="UTF-8">
@@ -106,18 +105,80 @@
   .full-width { width: 100%; border-radius: 4px; border: 1px solid #1a1a1a; margin-bottom: 24px; display: block; }
   video { width: 100%; border-radius: 4px; margin-bottom: 24px; border: 1px solid #1a1a1a; display: block; }
 
-  /* Compact portrait layout for the titin project */
-  .titin-layout { display: grid; grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1fr); gap: 18px; align-items: start; margin-bottom: 24px; }
-  .titin-video { width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: #080b0d; margin: 0; }
-  .titin-copy { line-height: 1.7; color: #bbb; margin: 0 0 14px; font-size: 0.9rem; }
-  .titin-stills { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
-  .titin-stills img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; border: 1px solid #1a1a1a; cursor: pointer; }
-  .titin-stills img:hover { border-color: #7ecfcf; }
-  .titin-details { border-top: 1px solid #252525; padding-top: 10px; color: #aaa; font-size: 0.85rem; line-height: 1.7; }
-  .titin-details summary { color: #7ecfcf; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-  .titin-details h3 { color: #ddd; font: 0.9rem -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 14px 0 5px; }
-  .titin-details p { margin: 0 0 10px; }
-  .titin-note { border-left: 2px solid #7ecfcf; padding-left: 10px; color: #999; }
+  /* Titin project: one larger portrait video, then timeline and text */
+  .titin-video-wrap { width: min(100%, 460px); margin: 0 auto 18px; }
+  .titin-video { width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: #080b0d; margin-bottom: 0; }
+  .titin-caption { color: #777; font: 0.72rem/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin-top: 8px; text-align: center; }
+
+  .titin-timeline {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    position: relative;
+    margin: 20px 0 28px;
+    padding: 0 8px;
+  }
+
+  .titin-timeline::before {
+    content: "";
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    top: 8px;
+    height: 1px;
+    background: linear-gradient(90deg, #7ecfcf 0%, #7ecfcf 45%, #d98fc8 100%);
+    opacity: 0.65;
+  }
+
+  .titin-milestone {
+    position: relative;
+    text-align: center;
+    color: #777;
+    font: 0.7rem/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .titin-milestone::before {
+    content: "";
+    display: block;
+    width: 9px;
+    height: 9px;
+    margin: 4px auto 8px;
+    border-radius: 50%;
+    background: #0d0d0d;
+    border: 1px solid #7ecfcf;
+    position: relative;
+    z-index: 1;
+  }
+
+  .titin-milestone:last-child::before {
+    border-color: #d98fc8;
+    background: #d98fc8;
+  }
+
+  .titin-milestone strong {
+    display: block;
+    color: #bbb;
+    font-size: 0.78rem;
+    font-weight: normal;
+    letter-spacing: 1px;
+  }
+
+  .titin-story { max-width: 820px; margin: 0 auto; }
+  .titin-story p { margin-bottom: 16px; }
+
+  .titin-note {
+    background: #111;
+    border-left: 3px solid #7ecfcf;
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+    color: #aaa;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-top: 18px;
+  }
+
+  .titin-note strong { color: #ddd; }
 
   .finding { background: #111; border-left: 3px solid #7ecfcf; padding: 16px 20px; border-radius: 0 4px 4px 0; margin-bottom: 24px; }
   .finding p { color: #ccc; margin: 0; font-size: 0.9rem; font-style: italic; }
@@ -147,8 +208,7 @@
     .back-btn { align-self: flex-start; }
     .filled-grid { grid-template-columns: 1fr; }
     .filled-grid img { height: 350px; }
-    .titin-layout { grid-template-columns: 1fr; }
-    .titin-video { width: min(100%, 420px); margin: 0 auto; }
+    .titin-video-wrap { width: min(100%, 420px); }
   }
 </style>
 </head>
@@ -196,37 +256,38 @@
       <h2>Steered Molecular Dynamics of Titin I27</h2>
       <div class="meta">PDB: 1TIT · 89-residue I27 domain · 9 ns · GROMACS with CUDA · Molecular Nodes · Blender Cycles</div>
 
-      <div class="titin-layout">
-        <div>
-          <video class="titin-video" controls playsinline preload="metadata" poster="Titin_I27_End.png">
-            <source src="Titin_I27_SMD_9ns.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <p class="titin-copy">30-second visualization of the 9 ns trajectory.</p>
+      <div class="titin-video-wrap">
+        <video class="titin-video" autoplay loop muted playsinline controls preload="metadata">
+          <source src="Titin_I27_SMD_9ns.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="titin-caption">A 30-second animation of the simulated trajectory</div>
+      </div>
+
+      <div class="titin-timeline" aria-label="Simulation and visualization timeline">
+        <div class="titin-milestone">
+          <strong>1TIT</strong>
+          Starting structure
         </div>
+        <div class="titin-milestone">
+          <strong>9 ns</strong>
+          Steered trajectory
+        </div>
+        <div class="titin-milestone">
+          <strong>30 sec</strong>
+          Blender animation
+        </div>
+      </div>
 
-        <div>
-          <p class="titin-copy">Titin’s I27 domain is a compact, beta-rich protein domain associated with the mechanical properties of muscle. I used the 89-residue chain A structure from PDB 1TIT to explore how its shape responds to an applied pull.</p>
+      <div class="titin-story">
+        <p>Titin is a giant muscle protein built from repeated domains. I focused on its I27 domain, a compact, beta-rich protein domain, and asked a simple structural question: how does this small domain change shape when an external force pulls on it? I started from the 89-residue chain A structure in PDB 1TIT.</p>
 
-          <p class="titin-copy">I prepared and solvated the system in GROMACS, added ions, minimized it, and equilibrated it before running a 9 ns steered molecular dynamics simulation. I compiled GROMACS with CUDA support so the production simulation could use an NVIDIA GPU.</p>
+        <p>I prepared the protein system in GROMACS, solvated it, added ions, minimized the structure, and equilibrated it before production. I built GROMACS with CUDA support so the production steered molecular dynamics simulation could use an NVIDIA GPU. The run followed a defined pulling coordinate for 9 ns.</p>
 
-          <div class="titin-stills">
-            <img src="Titin_I27_Start.png" alt="Titin I27 at the start of the simulation" onclick="openLightbox(this.src)">
-            <img src="Titin_I27_End.png" alt="Titin I27 at the end of the simulation" onclick="openLightbox(this.src)">
-          </div>
-          <p class="titin-copy">Starting and final frames from the trajectory.</p>
+        <p>The trajectory shows the domain extending and its compact structure rearranging under the applied pull. I exported the protein coordinates and loaded them into Blender with Molecular Nodes, so the animation follows the simulation trajectory rather than a hand-keyed deformation. I used an atom-sphere representation with element-based colours, then rendered the 30-second sequence in Cycles.</p>
 
-          <details class="titin-details">
-            <summary>More about the simulation and what it shows</summary>
-
-            <h3>From GROMACS to Blender</h3>
-            <p>I exported the protein coordinates from the completed trajectory and loaded them into Blender with Molecular Nodes. The animation follows the saved coordinates rather than manually animating the protein. I used an atom-sphere representation with element-based colours, then built Cycles materials and lighting around that molecular view.</p>
-
-            <h3>Interpreting the motion</h3>
-            <p>Across this trajectory, the domain extends and its compact structure rearranges under the applied pulling protocol. The 30-second film maps that simulated motion into a continuous visual sequence so the change in shape is easier to follow.</p>
-
-            <p class="titin-note"><strong>Important context:</strong> this is steered molecular dynamics, so the external pulling drives the extension. The trajectory illustrates the response in this particular simulation; it does not establish an unforced unfolding timescale or predict exactly how titin behaves in muscle.</p>
-          </details>
+        <div class="titin-note">
+          <strong>Interpreting the result:</strong> this is a steered simulation, so the external pulling drives the extension shown. It visualizes the structural response along this particular simulated trajectory; it does not establish an unforced unfolding timescale or predict exactly how titin behaves in muscle.
         </div>
       </div>
     </div>
