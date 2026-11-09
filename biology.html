@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JE8GT93J2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){gtag('arguments');}
   gtag('js', new Date());
   gtag('config', 'G-4JE8GT93J2');
 </script>
@@ -22,10 +22,10 @@
     transition: background-color 1s ease-in-out;
   }
 
-  body[data-theme="titin"] { background-color: #130a11; }
-  body[data-theme="atp"] { background-color: #0b1013; }
-  body[data-theme="trka"] { background-color: #130910; }
-  body[data-theme="secretin"] { background-color: #131009; }
+  body[data-theme="titin"] { background-color: #1a0b14; }
+  body[data-theme="atp"] { background-color: #0b1117; }
+  body[data-theme="trka"] { background-color: #1a0a14; }
+  body[data-theme="secretin"] { background-color: #1a150b; }
 
   /* HEADER STYLES */
   header {
@@ -201,69 +201,58 @@
     display: block;
   }
 
-  /* Titin project: large video and smaller start-to-end comparison */
-  .titin-hero {
-    width: min(100%, 620px);
-    margin: 18px auto 22px;
-  }
-
-  .titin-video {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: contain;
-    background: #050607;
-    margin: 0;
-  }
-
-  .titin-caption {
-    color: #777;
-    font: 0.72rem/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    margin-top: 8px;
-    text-align: center;
-  }
-
-  .titin-comparison {
+  /* Titin media: smaller start and end frames flank the main video */
+  .titin-showcase {
     display: grid;
-    grid-template-columns: minmax(0, 190px) 44px minmax(0, 190px);
-    justify-content: center;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-areas: "start video end";
     align-items: center;
-    gap: 12px;
-    margin: 24px auto 30px;
+    gap: 14px;
+    margin: 20px 0 28px;
   }
 
-  .titin-state {
+  .titin-panel {
     min-width: 0;
-    background: #080b0d;
-    border: 1px solid #1a1a1a;
+    background: #050607;
+    border: 1px solid #252126;
     border-radius: 4px;
     overflow: hidden;
   }
 
-  .titin-state img {
+  .titin-start { grid-area: start; }
+  .titin-video-panel { grid-area: video; }
+  .titin-end { grid-area: end; }
+
+  .titin-panel img,
+  .titin-panel video {
     display: block;
     width: 100%;
     aspect-ratio: 3 / 4;
     object-fit: contain;
     background: #050607;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .titin-panel img {
+    transform: scale(1.15);
     cursor: pointer;
   }
 
-  .titin-state img:hover { opacity: 0.9; }
-
-  .titin-state figcaption {
-    padding: 9px 8px;
-    color: #888;
+  .titin-panel figcaption {
+    position: relative;
+    padding: 10px 8px;
+    color: #aaa;
     font: 0.68rem/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     text-align: center;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.7px;
     text-transform: uppercase;
+    background: #09090b;
   }
 
-  .titin-arrow {
-    color: #d995be;
-    font: 1.8rem/1 Georgia, serif;
-    text-align: center;
-  }
+  .titin-start figcaption { color: #d9a6c3; }
+  .titin-end figcaption { color: #e6a0bd; }
 
   .titin-story {
     max-width: 820px;
@@ -273,7 +262,7 @@
   .titin-story p { margin-bottom: 16px; }
 
   .titin-note {
-    background: rgba(0, 0, 0, 0.18);
+    background: rgba(0, 0, 0, 0.2);
     border-left: 3px solid #d995be;
     padding: 14px 18px;
     border-radius: 0 4px 4px 0;
@@ -380,11 +369,12 @@
     .filled-grid { grid-template-columns: 1fr; }
     .filled-grid img { height: 350px; }
 
-    .titin-hero { width: min(100%, 500px); }
-
-    .titin-comparison {
-      grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
-      gap: 8px;
+    .titin-showcase {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "video video"
+        "start end";
+      gap: 10px;
     }
   }
 </style>
@@ -432,23 +422,21 @@
       <h2>Steered Molecular Dynamics of Titin I27</h2>
       <div class="meta">PDB: 1TIT · 89-residue I27 domain · 9 ns · GROMACS with CUDA · Molecular Nodes · Blender Cycles</div>
 
-      <div class="titin-hero">
-        <video class="titin-video" autoplay loop muted playsinline controls preload="metadata">
-          <source src="Titin_I27_SMD_9ns.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="titin-caption">30-second animation of the steered molecular dynamics trajectory</div>
-      </div>
-
-      <div class="titin-comparison">
-        <figure class="titin-state">
+      <div class="titin-showcase">
+        <figure class="titin-panel titin-start">
           <img src="Titin_I27_Start.png" alt="Compact starting structure of the titin I27 domain" onclick="openLightbox(this.src)">
           <figcaption>Start · compact I27 domain</figcaption>
         </figure>
 
-        <div class="titin-arrow" aria-hidden="true">→</div>
+        <figure class="titin-panel titin-video-panel">
+          <video autoplay loop muted playsinline preload="auto">
+            <source src="Titin_I27_SMD_9ns.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <figcaption>9 ns steered trajectory · 30-second animation</figcaption>
+        </figure>
 
-        <figure class="titin-state">
+        <figure class="titin-panel titin-end">
           <img src="Titin_I27_End.png" alt="Titin I27 at the end of the steered trajectory" onclick="openLightbox(this.src)">
           <figcaption>End · after applied pulling</figcaption>
         </figure>
@@ -722,6 +710,19 @@
   window.addEventListener('scroll', requestThemeUpdate, { passive: true });
   window.addEventListener('resize', requestThemeUpdate);
   updateProjectTheme();
+
+  /* Keep the titin trajectory playing and looping */
+  const titinTrajectory = document.querySelector('#project-titin-i27 video');
+
+  if (titinTrajectory) {
+    titinTrajectory.play().catch(() => {});
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        titinTrajectory.play().catch(() => {});
+      }
+    });
+  }
 </script>
 
 </body>
