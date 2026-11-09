@@ -106,6 +106,16 @@
   .full-width { width: 100%; border-radius: 4px; border: 1px solid #1a1a1a; margin-bottom: 24px; display: block; }
   video { width: 100%; border-radius: 4px; margin-bottom: 24px; border: 1px solid #1a1a1a; display: block; }
   
+  /* Compact portrait layout for the titin project */
+  .titin-feature { display: grid; grid-template-columns: minmax(220px, 0.78fr) minmax(0, 1fr); gap: 20px; align-items: stretch; margin: 22px 0 24px; }
+  .titin-video { width: 100%; aspect-ratio: 3 / 4; max-height: 560px; object-fit: contain; background: #080b0d; border: 1px solid #1a1a1a; border-radius: 4px; margin: 0; }
+  .titin-side { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+  .titin-copy { line-height: 1.75; color: #bbb; margin: 0 0 16px; font-size: 0.92rem; }
+  .titin-stills { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .titin-stills img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; border: 1px solid #1a1a1a; cursor: pointer; }
+  .titin-caption { color: #777; font: 0.72rem/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin-top: 8px; }
+  .titin-note { background: #111; border-left: 2px solid #7ecfcf; padding: 11px 14px; margin-top: 14px; color: #aaa; font-size: 0.82rem; line-height: 1.6; }
+
   .finding { background: #111; border-left: 3px solid #7ecfcf; padding: 16px 20px; border-radius: 0 4px 4px 0; margin-bottom: 24px; }
   .finding p { color: #ccc; margin: 0; font-size: 0.9rem; font-style: italic; }
   footer { border-top: 1px solid #222; padding: 40px; text-align: center; color: #444; font-size: 0.8rem; }
@@ -134,6 +144,9 @@
     .back-btn { align-self: flex-start; }
     .filled-grid { grid-template-columns: 1fr; }
     .filled-grid img { height: 350px; }
+    .titin-feature { grid-template-columns: 1fr; }
+    .titin-video { width: min(100%, 420px); margin: 0 auto; }
+    .titin-side { gap: 12px; }
   }
 </style>
 </head>
@@ -176,6 +189,33 @@
       </div>
     </div>
 
+    <!-- TITIN I27 STEERED MD PROJECT -->
+    <div class="project" id="project-titin-i27">
+      <h2>Titin I27 Under Mechanical Force</h2>
+      <div class="meta">PDB: 1TIT · 9 ns steered molecular dynamics · GROMACS · Molecular Nodes · Blender · Cycles</div>
+
+      <div class="titin-feature">
+        <div>
+          <video class="titin-video" controls playsinline preload="metadata" poster="Titin_I27_End.png">
+            <source src="Titin_I27_SMD_9ns.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="titin-caption">30-second visualization of the simulated trajectory</div>
+        </div>
+
+        <div class="titin-side">
+          <p class="titin-copy">I used GROMACS to run a 9 ns steered molecular dynamics simulation of titin’s I27 domain, then brought the saved trajectory into Blender with Molecular Nodes. The atomistic animation follows the domain as the pulling protocol extends it, with Cycles lighting and materials used to bring out the molecular detail.</p>
+
+          <div class="titin-stills">
+            <img src="Titin_I27_Start.png" alt="Titin I27 at the start of the steered simulation" onclick="openLightbox(this.src)">
+            <img src="Titin_I27_End.png" alt="Titin I27 at the end of the steered simulation" onclick="openLightbox(this.src)">
+          </div>
+          <div class="titin-caption">Starting and final trajectory frames</div>
+
+          <div class="titin-note">This is a steered simulation: the applied pulling protocol drives the extension shown in this trajectory. The animation illustrates this simulated response, not an unforced unfolding timescale.</div>
+        </div>
+      </div>
+    </div>
 
     <!-- 2MX4 / IDP PROJECT -->
     <div class="project" id="project-2mx4">
@@ -200,7 +240,6 @@
         <p>Project Note: The animation is a visual representation of the differences between the deposited conformers, rather than a claim that the protein follows that exact sequence as a real-time trajectory.</p>
       </div>
     </div>
-
 
     <!-- ATP SYNTHASE -->
     <div class="project" id="project-atp-synthase">
@@ -229,7 +268,6 @@
       <img class="full-width zoomable-img" src="nodes.png" alt="Geometry Nodes setup for ATP synthase membrane" onclick="openLightbox(this.src)">
     </div>
 
-
     <!-- TRKA -->
     <div class="project" id="project-trka">
       <h2>Animating Molecular Dynamics of the Human TrkA Receptor</h2>
@@ -247,7 +285,6 @@
         <p>Blender Note: I found that low-poly Ico Spheres with smooth shading worked better for the membrane when using subsurface scattering in Cycles, while also keeping the scene manageable to render.</p>
       </div>
     </div>
-
 
     <!-- SECRETIN RECEPTOR -->
     <div class="project" id="project-membrane">
@@ -269,7 +306,6 @@
       </div>
     </div>
 
-
     <!-- LACTOFERRIN -->
     <div class="project" id="project-lactoferrin">
       <h2>Cinematic Rendering of Human Lactoferrin</h2>
@@ -289,7 +325,6 @@
         <p>Blender Note: This project was mainly an experiment in molecular rendering and lighting. I wanted to see how far I could push a molecular structure toward a cinematic visual style.</p>
       </div>
     </div>
-
 
     <!-- ABL1 -->
     <div class="project" id="project-abl1">
@@ -315,7 +350,6 @@
         <p>ChimeraX Note: I used the structure and measurement tools in ChimeraX to examine the drug-binding pocket and highlight the location of Thr315.</p>
       </div>
     </div>
-
 
     <!-- HEMOGLOBIN -->
     <div class="project" id="project-hemoglobin">
