@@ -77,6 +77,17 @@
         transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
+    /* Keep the portrait titin movie uncropped in the wide landing panel */
+    .video-wrapper video.titin-background {
+      min-width: 0;
+      min-height: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #050505;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
     .video-wrapper video.active {
       opacity: 0.38;
     }
@@ -96,6 +107,10 @@
     .panel.biology:hover video.active {
       opacity: 0.65;
       transform: translate(-50%, -50%) scale(1.06);
+    }
+
+    .panel.biology:hover video.titin-background.active {
+      transform: translate(-50%, -50%) scale(1.03);
     }
 
     .panel.biology:hover::before {
@@ -176,6 +191,10 @@
         transform: translate(-50%, -50%) scale(1.03);
       }
 
+      .panel.biology:hover video.titin-background.active {
+        transform: translate(-50%, -50%) scale(1.01);
+      }
+
       .brand-center {
         top: 9%;
       }
@@ -219,14 +238,21 @@
         <video class="active" autoplay loop muted playsinline>
           <source src="atp_synthase_rotation.mp4" type="video/mp4">
         </video>
+
         <video autoplay loop muted playsinline>
           <source src="TrkA_Dynamics.mp4" type="video/mp4">
         </video>
+
         <video autoplay loop muted playsinline>
           <source src="Membrane_Video.mp4" type="video/mp4">
         </video>
+
         <video autoplay loop muted playsinline id="lacto-video">
           <source src="Lactoferrin_Animation.mp4" type="video/mp4">
+        </video>
+
+        <video class="titin-background" loop muted playsinline preload="metadata" id="titin-video">
+          <source src="Titin_I27_SMD_9ns.mp4" type="video/mp4">
         </video>
       </div>
 
@@ -243,37 +269,59 @@
     document.addEventListener("DOMContentLoaded", () => {
       const videos = document.querySelectorAll("#bio-video-container video");
       const lactoVideo = document.getElementById("lacto-video");
+      const titinVideo = document.getElementById("titin-video");
       let currentIdx = 0;
 
       const playlist = [
         { duration: 6000 },
         { duration: 4000 },
         { duration: 3800 },
-        { duration: 5500 }
+        { duration: 5500 },
+        { duration: 5000, start: 13 }
       ];
 
-      videos.forEach(video => video.play().catch(() => {}));
+      videos.forEach(video => {
+        if (video !== titinVideo) {
+          video.play().catch(() => {});
+        }
+      });
 
-      function runSequence() {
-        setTimeout(() => {
-          const activeVideo = videos[currentIdx];
-          currentIdx = (currentIdx + 1) % videos.length;
-          const nextVideo = videos[currentIdx];
+      function advanceVideo() {
+        const activeVideo = videos[currentIdx];
+        activeVideo.classList.remove("active");
 
-          if (currentIdx === 3 && lactoVideo) {
-            lactoVideo.currentTime = 1.0;
+        if (activeVideo === titinVideo) {
+          activeVideo.pause();
+        }
+
+        currentIdx = (currentIdx + 1) % videos.length;
+        const nextVideo = videos[currentIdx];
+
+        if (currentIdx === 3 && lactoVideo) {
+          lactoVideo.currentTime = 1.0;
+        }
+
+        nextVideo.classList.add("active");
+
+        if (nextVideo === titinVideo) {
+          const startTitinSegment = () => {
+            nextVideo.currentTime = playlist[currentIdx].start;
+            nextVideo.play().catch(() => {});
+            setTimeout(advanceVideo, playlist[currentIdx].duration);
+          };
+
+          if (nextVideo.readyState >= 1) {
+            startTitinSegment();
+          } else {
+            nextVideo.addEventListener("loadedmetadata", startTitinSegment, { once: true });
+            nextVideo.load();
           }
-
-          nextVideo.classList.add("active");
-          activeVideo.classList.remove("active");
-
-          runSequence();
-        }, playlist[currentIdx].duration);
+        } else {
+          setTimeout(advanceVideo, playlist[currentIdx].duration);
+        }
       }
 
-      if (videos.length > 0) {
-        runSequence();
-      }
+      setTimeout(advanceVideo, playlist[currentIdx].duration);
     });
   </script>
 </body>
