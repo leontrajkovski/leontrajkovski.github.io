@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JE8GT93J2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){gtag('arguments');}
+  function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-4JE8GT93J2');
 </script>
@@ -14,18 +14,7 @@
 <title>Leon Trajkovski | Structural Biology Portfolio</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #0d0d0d;
-    color: #e8e8e8;
-    font-family: 'Georgia', serif;
-    transition: background-color 1s ease-in-out;
-  }
-
-  body[data-theme="titin"] { background-color: #1a0b14; }
-  body[data-theme="atp"] { background-color: #0b1117; }
-  body[data-theme="trka"] { background-color: #1a0a14; }
-  body[data-theme="secretin"] { background-color: #1a150b; }
+  body { background: #0d0d0d; color: #e8e8e8; font-family: 'Georgia', serif; }
 
   /* HEADER STYLES */
   header {
@@ -81,64 +70,21 @@
   }
 
   /* Main layout */
-  .portfolio-container {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-  }
+  .portfolio-container { position: relative; max-width: 1200px; margin: 0 auto; display: flex; }
+  .feed { flex: 1; max-width: 960px; padding: 0 40px; margin: 0 auto; }
 
-  .feed {
-    flex: 1;
-    max-width: 960px;
-    padding: 0 40px;
-    margin: 0 auto;
-  }
-
-  .project {
-    margin: 60px auto;
-    scroll-margin-top: 80px;
-  }
-
-  .project h2 {
-    font-size: 1.4rem;
-    font-weight: normal;
-    color: #7ecfcf;
-    margin-bottom: 8px;
-    transition: color 1s ease-in-out;
-  }
-
-  .project .meta {
-    font-size: 0.8rem;
-    color: #555;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .project p {
-    line-height: 1.8;
-    color: #bbb;
-    margin-bottom: 24px;
-    font-size: 0.95rem;
-  }
+  .project { margin: 60px auto; scroll-margin-top: 80px; }
+  .project h2 { font-size: 1.4rem; font-weight: normal; color: #7ecfcf; margin-bottom: 8px; }
+  .project .meta { font-size: 0.8rem; color: #555; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
+  .project p { line-height: 1.8; color: #bbb; margin-bottom: 24px; font-size: 0.95rem; }
 
   /* Project title colours */
   #project-titin-i27 h2,
-  #project-trka h2 {
-    color: #d995be;
-  }
+  #project-trka h2 { color: #d995be; }
 
   #project-2mx4 h2 {
     color: #7ecfcf;
-    background: linear-gradient(
-      90deg,
-      #79a5f5,
-      #69d0c7,
-      #e0c36f,
-      #e58fbd,
-      #aa91ec
-    );
+    background: linear-gradient(90deg, #79a5f5, #69d0c7, #e0c36f, #e58fbd, #aa91ec);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -166,42 +112,14 @@
 
   .filled-grid img:hover { border-color: #7ecfcf; }
 
-  .images {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
+  .images { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .images img, .zoomable-img { width: 100%; border-radius: 4px; border: 1px solid #1a1a1a; cursor: pointer; transition: border-color 0.3s, transform 0.2s; }
+  .images img:hover, .zoomable-img:hover { border-color: #7ecfcf; }
 
-  .images img,
-  .zoomable-img {
-    width: 100%;
-    border-radius: 4px;
-    border: 1px solid #1a1a1a;
-    cursor: pointer;
-    transition: border-color 0.3s, transform 0.2s;
-  }
+  .full-width { width: 100%; border-radius: 4px; border: 1px solid #1a1a1a; margin-bottom: 24px; display: block; }
+  video { width: 100%; border-radius: 4px; margin-bottom: 24px; border: 1px solid #1a1a1a; display: block; }
 
-  .images img:hover,
-  .zoomable-img:hover { border-color: #7ecfcf; }
-
-  .full-width {
-    width: 100%;
-    border-radius: 4px;
-    border: 1px solid #1a1a1a;
-    margin-bottom: 24px;
-    display: block;
-  }
-
-  video {
-    width: 100%;
-    border-radius: 4px;
-    margin-bottom: 24px;
-    border: 1px solid #1a1a1a;
-    display: block;
-  }
-
-  /* Titin media: smaller start and end frames flank the main video */
+  /* Titin start / video / end layout */
   .titin-showcase {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
@@ -213,10 +131,10 @@
 
   .titin-panel {
     min-width: 0;
-    background: #050607;
+    overflow: hidden;
     border: 1px solid #252126;
     border-radius: 4px;
-    overflow: hidden;
+    background: #050607;
   }
 
   .titin-start { grid-area: start; }
@@ -228,37 +146,30 @@
     display: block;
     width: 100%;
     aspect-ratio: 3 / 4;
-    object-fit: contain;
-    background: #050607;
+    margin: 0;
     border: 0;
     border-radius: 0;
-    margin: 0;
+    background: #050607;
+    object-fit: contain;
   }
 
-  .titin-panel img {
-    transform: scale(1.15);
-    cursor: pointer;
-  }
+  .titin-panel img { transform: scale(1.15); cursor: pointer; }
 
   .titin-panel figcaption {
     position: relative;
     padding: 10px 8px;
+    background: #09090b;
     color: #aaa;
     font: 0.68rem/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    text-align: center;
     letter-spacing: 0.7px;
+    text-align: center;
     text-transform: uppercase;
-    background: #09090b;
   }
 
-  .titin-start figcaption { color: #d9a6c3; }
-  .titin-end figcaption { color: #e6a0bd; }
+  .titin-start figcaption,
+  .titin-end figcaption { color: #d995be; }
 
-  .titin-story {
-    max-width: 820px;
-    margin: 0 auto;
-  }
-
+  .titin-story { max-width: 820px; margin: 0 auto; }
   .titin-story p { margin-bottom: 16px; }
 
   .titin-note {
@@ -274,84 +185,22 @@
 
   .titin-note strong { color: #ddd; }
 
-  .finding {
-    background: #111;
-    border-left: 3px solid #7ecfcf;
-    padding: 16px 20px;
-    border-radius: 0 4px 4px 0;
-    margin-bottom: 24px;
-  }
-
-  .finding p {
-    color: #ccc;
-    margin: 0;
-    font-size: 0.9rem;
-    font-style: italic;
-  }
-
-  footer {
-    border-top: 1px solid #222;
-    padding: 40px;
-    text-align: center;
-    color: #444;
-    font-size: 0.8rem;
-  }
+  .finding { background: #111; border-left: 3px solid #7ecfcf; padding: 16px 20px; border-radius: 0 4px 4px 0; margin-bottom: 24px; }
+  .finding p { color: #ccc; margin: 0; font-size: 0.9rem; font-style: italic; }
+  footer { border-top: 1px solid #222; padding: 40px; text-align: center; color: #444; font-size: 0.8rem; }
 
   /* Lightbox Styles */
   .lightbox-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(5, 5, 5, 0.95);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 1000;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(5, 5, 5, 0.95); display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1000;
   }
 
-  .lightbox-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .lightbox-container {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-    overflow: hidden;
-    border-radius: 4px;
-  }
-
-  .lightbox-img {
-    max-width: 100%;
-    max-height: 85vh;
-    object-fit: contain;
-    transition: transform 0.2s ease;
-    cursor: zoom-in;
-    display: block;
-  }
-
-  .lightbox-img.zoomed {
-    transform: scale(2);
-    cursor: zoom-out;
-  }
-
-  .lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: #888;
-    font-size: 1.5rem;
-    cursor: pointer;
-    font-family: sans-serif;
-    transition: color 0.2s;
-  }
-
+  .lightbox-overlay.active { opacity: 1; pointer-events: auto; }
+  .lightbox-container { position: relative; max-width: 90%; max-height: 90%; overflow: hidden; border-radius: 4px; }
+  .lightbox-img { max-width: 100%; max-height: 85vh; object-fit: contain; transition: transform 0.2s ease; cursor: zoom-in; display: block; }
+  .lightbox-img.zoomed { transform: scale(2); cursor: zoom-out; }
+  .lightbox-close { position: absolute; top: 20px; right: 20px; color: #888; font-size: 1.5rem; cursor: pointer; font-family: sans-serif; transition: color 0.2s; }
   .lightbox-close:hover { color: #fff; }
 
   /* Responsive Design Rules */
@@ -360,11 +209,7 @@
   }
 
   @media (max-width: 768px) {
-    .header-content {
-      flex-direction: column;
-      gap: 20px;
-    }
-
+    .header-content { flex-direction: column; gap: 20px; }
     .back-btn { align-self: flex-start; }
     .filled-grid { grid-template-columns: 1fr; }
     .filled-grid img { height: 350px; }
@@ -379,7 +224,7 @@
   }
 </style>
 </head>
-<body data-theme="default">
+<body>
 
 <header>
   <div class="header-content">
@@ -657,71 +502,6 @@
     } else {
       lightbox.onmousemove = null;
     }
-  }
-
-  /* Smoothly theme the page around the project nearest the viewport center */
-  const themedProjects = [
-    { id: 'project-jacs', theme: 'default' },
-    { id: 'project-titin-i27', theme: 'titin' },
-    { id: 'project-2mx4', theme: 'default' },
-    { id: 'project-atp-synthase', theme: 'atp' },
-    { id: 'project-trka', theme: 'trka' },
-    { id: 'project-membrane', theme: 'secretin' },
-    { id: 'project-lactoferrin', theme: 'default' },
-    { id: 'project-abl1', theme: 'default' },
-    { id: 'project-hemoglobin', theme: 'default' }
-  ];
-
-  let themeUpdatePending = false;
-
-  function updateProjectTheme() {
-    const focusY = window.innerHeight * 0.45;
-    let activeProject = null;
-    let lastPassedProject = null;
-
-    for (const item of themedProjects) {
-      const element = document.getElementById(item.id);
-      if (!element) continue;
-
-      const rect = element.getBoundingClientRect();
-
-      if (rect.top <= focusY) {
-        lastPassedProject = item;
-      }
-
-      if (rect.top <= focusY && rect.bottom > focusY) {
-        activeProject = item;
-        break;
-      }
-    }
-
-    activeProject = activeProject || lastPassedProject || themedProjects[0];
-    document.body.dataset.theme = activeProject.theme;
-    themeUpdatePending = false;
-  }
-
-  function requestThemeUpdate() {
-    if (!themeUpdatePending) {
-      themeUpdatePending = true;
-      requestAnimationFrame(updateProjectTheme);
-    }
-  }
-
-  window.addEventListener('scroll', requestThemeUpdate, { passive: true });
-  window.addEventListener('resize', requestThemeUpdate);
-  updateProjectTheme();
-
-  /* Keep the titin trajectory playing and looping */
-  const titinTrajectory = document.querySelector('#project-titin-i27 video');
-
-  if (titinTrajectory) {
-    titinTrajectory.play().catch(() => {});
-
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) {
-        titinTrajectory.play().catch(() => {});
-      }
-    });
   }
 </script>
 
